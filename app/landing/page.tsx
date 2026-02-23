@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { SERVICES } from "../component/services";
 
 export default function LandingPage() {
   return (
@@ -96,30 +97,72 @@ export default function LandingPage() {
             </a>
           </div>
           <div className="grid grid-cols-3 gap-4 items-end mt-5">
-            <Image
-              className="h-92 w-full rounded-lg"
-              src="/img/viks-clean.jpg"
-              alt=""
-              width={500}
-              height={400}
-            />
-            <Image
-              className="h-72 w-full rounded-lg"
-              src="/img/viks-office.jpg"
-              alt=""
-              width={500}
-              height={400}
-            />
-            <Image
-              className="h-92 w-full rounded-lg"
-              src="/img/viks-home.jpg"
-              alt=""
-              width={500}
-              height={400}
-            />
+            {SERVICES.slice(0, 3).map((val, i) => (
+              <div
+                className="shadow-[#00000040] h-88 shadow border-[#E7E7E7] border p-5 rounded-lg flex items-start justify-between flex-col gap-5 cursor-pointer"
+                key={i}
+              >
+                <span className="text-2xl">{val.title}</span>
+                <Image
+                  className="h-56 w-full rounded-lg"
+                  src={val.img}
+                  alt=""
+                  width={500}
+                  height={400}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="h-screen flex flex-col gap-4 items-center">
+        <div className="grid gap-6 items-start p-5 py-7 w-6xl bg-[#00000033] h-full rounded-2xl">
+          <div className="flex justify-between items-center w-full mt-5">
+            <div className="grid gap-5 itms-start w-lg">
+              <h2 className="text-xl font-medium">
+                Our Commitment to Excellence Experiences
+              </h2>
+              <span className="m-0 text-sm leading-[155%]">
+                At Viks Cleaning Services, we’re not just about cleaning homes,
+                we’re about making a difference in the lives of our clients and
+                our community. Explore our core mission and vision that drives
+                us every day. We offer customized cleaning packages and use
+                eco-friendly cleaning products.
+              </span>
+              <a className="bg-[#0C06AC] text-xs h-10 flex items-center justify-center w-38 cursor-pointer rounded-lg text-white p-3 px-4 m-0">
+                Request service
+              </a>
+            </div>
+            <div className="flex w-xl flex-col items-start relative">
+              <div className="w-full">
+                <Image
+                  src="/img/viks-clean.jpeg"
+                  className="rounded-2xl"
+                  alt=""
+                  width={500}
+                  height={500}
+                />
+              </div>
+              <div className="w-full flex gap-3 absolute -start-7 bottom-0">
+                <Image
+                  src="/img/viks-clean.jpg"
+                  className="rounded-2xl w-68 -rotate-[20deg] -start-[3em] -bottom-[6em] relative"
+                  alt=""
+                  width={500}
+                  height={500}
+                />
+                <Image
+                  src="/img/viks-office.jpg"
+                  className="rounded-2xl w-68 rotate-[20deg] -end-[2em] -bottom-[6em] relative"
+                  alt=""
+                  width={500}
+                  height={500}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
-};
+}
