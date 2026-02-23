@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export const LandingPage = () => {
+export default function LandingPage() {
   return (
     <div className="w-full">
       <div className="bg-[#E5E8FF] w-full h-screen flex items-end justify-center gap-6">
