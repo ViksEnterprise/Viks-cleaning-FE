@@ -119,7 +119,7 @@ export default function LandingPage() {
         <div className="grid gap-6 items-start p-5 py-7 w-6xl bg-[#00000033] h-full rounded-2xl">
           <div className="flex justify-between items-center w-full mt-5">
             <div className="grid gap-5 itms-start w-lg">
-              <h2 className="text-xl font-medium">
+              <h2 className="text-2xl font-medium">
                 Our Commitment to Excellence Experiences
               </h2>
               <span className="m-0 text-sm leading-[155%]">
