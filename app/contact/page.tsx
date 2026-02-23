@@ -1,3 +1,3 @@
-export const Contact = () => {
-  return <div></div>;
+export default function Contact () {
+  return <div>hi</div>;
 };

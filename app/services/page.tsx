@@ -1,3 +1,3 @@
-export const OurServices = () => {
-  return <div></div>;
+export default function OurServices() {
+  return <div>hi</div>;
 };
