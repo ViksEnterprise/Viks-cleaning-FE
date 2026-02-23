@@ -1,3 +1,3 @@
-export const BookService = () => {
-  return <div></div>;
+export default function BookService() {
+  return <div>hi</div>;
 };
