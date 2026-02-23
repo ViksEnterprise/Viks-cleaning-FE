@@ -3,8 +3,8 @@ import Image from "next/image";
 export const LandingPage = () => {
   return (
     <div className="w-full">
-      <div className="bg-[#E5E8FF] w-full h-screen flex items-end justify-center gap-6 px-5">
-        <div className="flex items-end gap-6 items-start justify-between w-6xl">
+      <div className="bg-[#E5E8FF] w-full h-screen flex items-end justify-center gap-6">
+        <div className="flex items-end gap-6 items-start justify-between w-6xl px-5">
           <div className="flex flex-col gap-5 w-lg justify-center h-full">
             <div className="bg-[#0C06AC] text-xs h-10 flex items-center justify-center w-fit rounded-3xl text-white p-3 px-4 m-0">
               Professional Cleaning Service Company
@@ -37,7 +37,7 @@ export const LandingPage = () => {
         <div className="grid gap-6 items-start p-5 w-6xl">
           <div className="flex justify-between items-start w-full">
             <div className="grid space-y-2 itms-start w-2xs">
-              <h3 className="text-sm uppercase font-normal">About us</h3>
+              <h3 className="text-sm uppercase font-medium">About us</h3>
               <span className="m-0 text-2xl leading-[155%]">
                 <span className="text-[#00008B]">Your top choice</span> for
                 cleaning service
@@ -81,6 +81,45 @@ export const LandingPage = () => {
         </div>
       </div>
       <hr className="text-[#E7E7E7]" />
+      <div className="h-screen flex flex-col gap-4 items-center">
+        <div className="grid gap-6 items-start p-5 w-6xl">
+          <div className="flex justify-between items-center w-full">
+            <div className="grid space-y-2 itms-start w-xs">
+              <h3 className="text-sm uppercase font-medium">Our services</h3>
+              <span className="m-0 text-2xl leading-[155%]">
+                Explore our
+                <span className="text-[#00008B]"> cleaning services</span>
+              </span>
+            </div>
+            <a className="bg-[#0C06AC] text-sm h-10 flex items-center justify-center w-42 cursor-pointer rounded-lg text-white p-3 px-4 m-0">
+              View all our services
+            </a>
+          </div>
+          <div className="grid grid-cols-3 gap-4 items-end mt-5">
+            <Image
+              className="h-92 w-full rounded-lg"
+              src="/img/viks-clean.jpg"
+              alt=""
+              width={500}
+              height={400}
+            />
+            <Image
+              className="h-72 w-full rounded-lg"
+              src="/img/viks-office.jpg"
+              alt=""
+              width={500}
+              height={400}
+            />
+            <Image
+              className="h-92 w-full rounded-lg"
+              src="/img/viks-home.jpg"
+              alt=""
+              width={500}
+              height={400}
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
