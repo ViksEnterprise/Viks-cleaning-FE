@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { BsShieldCheck } from "react-icons/bs";
 import { VALUE } from "../component/values";
 
 export default function About() {

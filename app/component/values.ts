@@ -1,6 +1,6 @@
 import { BsShieldCheck } from "react-icons/bs";
-import { FaThumbsUp } from "react-icons/fa";
-import { HiHeart } from "react-icons/hi";
+import { GoThumbsup } from "react-icons/go";
+import { CiHeart } from "react-icons/ci";;
 
 const VALUE = [
   {
@@ -9,12 +9,12 @@ const VALUE = [
     text: "Building trusts with clients by being transparent, honest and reliable in all interactions, including respecting piracy.",
   },
   {
-    icon: FaThumbsUp,
+    icon: GoThumbsup,
     name: "Professionalism",
     text: "Conducting all cleaning tasks with professionalism including arriving on time, adhering to safety standards.",
   },
   {
-    icon: HiHeart,
+    icon: CiHeart,
     name: "Customer Satisfaction",
     text: "Prioritizing the needs and preferences of customers and striving to exceed their expectations.",
   },
