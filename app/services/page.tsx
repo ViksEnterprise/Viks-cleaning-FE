@@ -33,6 +33,14 @@ export default function OurServices() {
                 </div>
               ))}
             </div>
+            <div className="w-full flex items-center justify-center">
+              <a
+                href="/"
+                className="bg-[#0C06AC] text-sm h-11 flex items-center justify-center w-54 cursor-pointer rounded-lg text-white p-3 px-4 m-0"
+              >
+                Book our services now
+              </a>
+            </div>
           </div>
         </div>
       </div>
