@@ -93,7 +93,7 @@ export default function About() {
             <span className="text-base font-medium">
               Feel free to contact us by clicking on the button
             </span>
-            <a className="bg-[#0C06AC] text-sm h-11 flex items-center justify-center w-42 cursor-pointer rounded-lg text-white p-3 px-4 m-0">
+            <a href="/contact" className="bg-[#0C06AC] text-sm h-11 flex items-center justify-center w-42 cursor-pointer rounded-lg text-white p-3 px-4 m-0">
               Contact us
             </a>
           </div>
