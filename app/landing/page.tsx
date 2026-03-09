@@ -91,20 +91,20 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols gap-4 items-end mt-5">
-            <Image
-              className="md:h-92 72 w-full rounded-lg"
+            {!mobile && <Image
+              className="h-92 w-full rounded-lg"
               src="/img/viks-clean.jpg"
               alt=""
               width={500}
               height={400}
-            />
-            {!mobile && <Image
+            />}
+            <Image
               className="h-72 w-full rounded-lg"
               src="/img/viks-office.jpg"
               alt=""
               width={500}
               height={400}
-            />}
+            />
             {!mobile && <Image
               className="h-92 w-full rounded-lg"
               src="/img/viks-home.jpg"
