@@ -72,7 +72,7 @@ export default function LandingPage() {
         <div className="grid gap-6 items-start p-5 md:w-6xl w-full">
           <div className="flex justify-between flex-col md:flex-row gap-5 items-start w-full">
             <div className="grid space-y-2 itms-start md:w-2xs w-full">
-              <h3 className="text-sm uppercase font-medium">About us</h3>
+              <h3 className="lg:text-sm md:text-base text-lg uppercase font-medium">About us</h3>
               <span className="m-0 md:text-2xl text-xl leading-[155%]">
                 <span className="text-[#00008B]">Your top choice</span> for
                 cleaning service
@@ -91,13 +91,15 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols gap-4 items-end mt-5">
-            {!mobile && <Image
-              className="h-92 w-full rounded-lg"
-              src="/img/viks-clean.jpg"
-              alt=""
-              width={500}
-              height={400}
-            />}
+            {!mobile && (
+              <Image
+                className="h-92 w-full rounded-lg"
+                src="/img/viks-clean.jpg"
+                alt=""
+                width={500}
+                height={400}
+              />
+            )}
             <Image
               className="h-72 w-full rounded-lg"
               src="/img/viks-office.jpg"
@@ -105,58 +107,95 @@ export default function LandingPage() {
               width={500}
               height={400}
             />
-            {!mobile && <Image
-              className="h-92 w-full rounded-lg"
-              src="/img/viks-home.jpg"
-              alt=""
-              width={500}
-              height={400}
-            /> }
+            {!mobile && (
+              <Image
+                className="h-92 w-full rounded-lg"
+                src="/img/viks-home.jpg"
+                alt=""
+                width={500}
+                height={400}
+              />
+            )}
           </div>
         </div>
       </div>
       <hr className="text-[#E7E7E7]" />
-      <div className="h-screen flex flex-col gap-4 items-center hidden">
-        <div className="grid gap-6 items-start p-5 w-6xl">
-          <div className="flex justify-between items-center w-full">
+      <div className="lg:h-screen md:h-svh h-full flex flex-col gap-4 items-center">
+        <div className="grid gap-6 items-start p-5 md:w-6xl w-full">
+          <div className="flex md:flex-row flex-col justify-between items-center w-full">
             <div className="grid space-y-2 itms-start w-xs">
-              <h3 className="text-sm uppercase font-medium">Our services</h3>
-              <span className="m-0 text-2xl leading-[155%]">
+              <h3 className="lg:text-sm md:text-base text-lg uppercase font-medium">
+                Our services
+              </h3>
+              <span className="m-0 md:text-xl lg:text-2xl text-lg leading-[155%]">
                 Explore our
                 <span className="text-[#00008B]"> cleaning services</span>
               </span>
             </div>
-            <a
-              href="/services"
-              className="bg-[#0C06AC] text-sm h-10 flex items-center justify-center w-42 cursor-pointer rounded-lg text-white p-3 px-4 m-0"
-            >
-              View all our services
-            </a>
-          </div>
-          <div className="grid grid-cols-3 gap-4 items-end mt-5">
-            {SERVICES.slice(0, 3).map((val, i) => (
-              <div
-                className="shadow-[#00000040] h-88 shadow border-[#E7E7E7] border p-5 rounded-lg flex items-start justify-between flex-col gap-5 cursor-pointer"
-                key={i}
+            {!mobile && (
+              <a
+                href="/services"
+                className="bg-[#0C06AC] text-sm h-10 flex items-center justify-center w-42 cursor-pointer rounded-lg text-white p-3 px-4 m-0"
               >
-                <span className="text-2xl">{val.title}</span>
-                <Image
-                  className="h-56 w-full rounded-lg"
-                  src={val.img}
-                  alt=""
-                  width={500}
-                  height={400}
-                />
-              </div>
-            ))}
+                View all our services
+              </a>
+            )}
           </div>
+          {!mobile ? (
+            <div className="grid grid-cols-3 gap-4 items-end mt-5">
+              {SERVICES.slice(0, 3).map((val, i) => (
+                <div
+                  className="shadow-[#00000040] h-88 shadow border-[#E7E7E7] border p-5 rounded-lg flex items-start justify-between flex-col gap-5 cursor-pointer"
+                  key={i}
+                >
+                  <span className="text-2xl">{val.title}</span>
+                  <Image
+                    className="h-56 w-full rounded-lg"
+                    src={val.img}
+                    alt=""
+                    width={500}
+                    height={400}
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-4 items-end mt-5">
+              {SERVICES.slice(0, 2).map((val, i) => (
+                <div
+                  className="shadow-[#00000040] h-68 shadow border-[#E7E7E7] border p-5 rounded-lg flex items-start justify-between flex-col gap-5 cursor-pointer"
+                  key={i}
+                >
+                  <span className="text-xl">{val.title}</span>
+                  <Image
+                    className="h-42 w-full rounded-lg"
+                    src={val.img}
+                    alt=""
+                    width={500}
+                    height={400}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+
+          {mobile && (
+            <div className="w-full flex items-center justify-center">
+              <a
+                href="/services"
+                className="bg-[#0C06AC] text-sm h-10 flex items-center justify-center w-52 cursor-pointer rounded-lg text-white p-3 px-4 m-0"
+              >
+                View all our services
+              </a>
+            </div>
+          )}
         </div>
       </div>
-      <div className="h-screen flex flex-col gap-4 items-center hidden">
-        <div className="grid gap-6 items-start p-5 py-7 w-6xl bg-[#00000033] h-full rounded-2xl">
+      <div className="md:h-screen h-fit md:p-0 px-3 flex flex-col gap-4 items-center">
+        <div className="grid gap-6 items-start p-5 py-7 md:w-6xl w-full bg-[#00000033] h-full rounded-2xl">
           <div className="flex justify-between items-center w-full mt-5">
-            <div className="grid gap-5 itms-start w-lg">
-              <h2 className="text-2xl font-medium">
+            <div className="grid gap-5 itms-start md:w-lg w-full">
+              <h2 className="md:text-2xl text-xl font-medium">
                 Our Commitment to Excellence Experiences
               </h2>
               <span className="m-0 text-sm leading-[155%]">
@@ -170,7 +209,7 @@ export default function LandingPage() {
                 Request service
               </a>
             </div>
-            <div className="flex w-xl flex-col items-start relative">
+            {!mobile && <div className="flex w-xl flex-col items-start relative">
               <div className="w-full">
                 <Image
                   src="/img/viks-clean.jpeg"
@@ -196,7 +235,7 @@ export default function LandingPage() {
                   height={500}
                 />
               </div>
-            </div>
+            </div>}
           </div>
         </div>
       </div>

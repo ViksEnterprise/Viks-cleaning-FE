@@ -76,7 +76,7 @@ export default function NavBar() {
           <div className="w-[fit]">
             <Image
               src="/img/logo-no-bg.png"
-              className="h-18"
+              className="h-20"
               alt=""
               height={100}
               width={100}
@@ -92,8 +92,8 @@ export default function NavBar() {
               <div className="h-1 w-6 bg-black"></div>
             </div>
             {openNav ? (
-              <nav className="absolute start-0 bottom-0 top-0 bg-gradient-to-r from-[#0e21a2]/50 to-[#2c4cf9]/50 w-full h-svh flex flex-col items-end justify-end">
-                <ul className="flex flex-col items-start gap-5 text-white w-[67%] bg-[#0e21a2] h-[inherit] p-3">
+              <nav className="absolute start-0 bottom-0 top-0 bg-gradient-to-r from-[#171717]/50 to-[#0a0a0a]/50 w-full h-svh flex flex-col items-end justify-end">
+                <ul className="flex flex-col items-start gap-5 text-black w-[70%] bg-[#fff] h-[inherit] p-3">
                   <div className="flex w-full items-end justify-end">
                     <FaTimes
                       className="cursor-pointer"
@@ -102,12 +102,12 @@ export default function NavBar() {
                     />
                   </div>
                   {NAVBAROUTE.map((item, i) => (
-                    <li key={i} className="w-full">
+                    <li key={i} className="w-full text-base font-medium">
                       <a
                         className={`${
-                          item.path !== "Enroll Now"
+                          item.path !== "Book Now"
                             ? "font-[200]"
-                            : "flex items-center justify-center font-[200] h-11 rounded-[4px] bg-[#f6a31f] p-2 w-full"
+                            : "flex items-center justify-center font-[200] h-11 rounded-[4px] text-white bg-[#171717] p-2 w-full"
                         }`}
                         href={`${item.url}`}
                         onClick={closeNavMenu}
