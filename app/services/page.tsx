@@ -17,7 +17,7 @@ export default function OurServices() {
               cleaning services ranging from commercial, residential and others
               listed below. Here are the services we offer.
             </span>
-            <div className="grid grid-cols-2 gap-5 mt-4">
+            <div className="grid md:grid-cols-2 grid-cols gap-5 mt-4">
               {SERVICES.map((val, i) => (
                 <div className="flex relative overflow-hidden before:absolute before:w-full before:h-full before:bg-black/20 rounded-lg cursor-pointer" key={i}>
                   <Image
