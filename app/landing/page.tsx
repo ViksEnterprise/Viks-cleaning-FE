@@ -123,7 +123,7 @@ export default function LandingPage() {
       <div className="lg:h-screen md:h-svh h-full flex flex-col gap-4 items-center">
         <div className="grid gap-6 items-start p-5 md:w-6xl w-full">
           <div className="flex md:flex-row flex-col justify-between items-center w-full">
-            <div className="grid space-y-2 itms-start w-xs">
+            <div className="grid space-y-2 itms-start md:w-xs w-full">
               <h3 className="lg:text-sm md:text-base text-lg uppercase font-medium">
                 Our services
               </h3>
