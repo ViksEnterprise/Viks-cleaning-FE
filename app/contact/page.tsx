@@ -14,7 +14,7 @@ export default function Contact() {
         <div className="p-5 w-6xl flex md:flex-row flex-col-reverse items-center gap-4 h-fit justify-between">
           <form
             method="post"
-            className="w-lg p-4 rounded-lg grid items-start gap-3 shadow border-[#E7E7E7] border shadow-[#00000040]"
+            className="md:w-lg w-full p-4 rounded-lg grid items-start gap-3 shadow border-[#E7E7E7] border shadow-[#00000040]"
           >
             <div className="flex flex-col gap-2 items-start">
               <label className="text-sm" htmlFor="name">
@@ -49,8 +49,8 @@ export default function Contact() {
               Send message
             </button>
           </form>
-          <div className="md:h-118 h-0 flex relative bg-black before:content-[' '] before:absolute before:bg-black before:h-full md:before:w-[0.5px] before:w-full before:z-1 before:flex"></div>
-          <div className="w-sm flex flex-col gap-6">
+          <div className="md:h-118 h-1 flex relative bg-black before:content-[' '] before:absolute before:bg-black before:h-full md:before:w-[0.5px] before:w-full before:z-1 before:flex"></div>
+          <div className="md:w-sm w-full flex flex-col gap-6">
             <div className="grid items-start gap-2 mb-4">
               <h5 className="text-4xl capitalize">Get in touch</h5>
               <span className="text-sm font-[500]">
