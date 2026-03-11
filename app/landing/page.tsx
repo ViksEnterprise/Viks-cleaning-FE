@@ -245,6 +245,7 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
+      <hr className="text-[#E7E7E7]" />
       <Testimonial />
     </div>
   );

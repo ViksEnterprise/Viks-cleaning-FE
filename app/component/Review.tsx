@@ -11,7 +11,7 @@ export default function Testimonial() {
     <section className="w-full mt-5 h-[fit] flex flex-col items-center justify-center">
       <div className="flex items-center w-full justify-center p-3 my-3 pb-6 flex-col gap-4">
         <h5
-          className={`md:text-3xl text-2xl uppercase text-white text-center`}
+          className={`md:text-3xl text-2xl uppercase text-[#00008B] font-bold text-center`}
         >
           <motion.h5
             whileInView={"visible"}
@@ -22,13 +22,13 @@ export default function Testimonial() {
               visible: { x: 0, opacity: 1 },
             }}
           >
-            What our students say
+            What our clients say
           </motion.h5>
         </h5>
         <div className="grid md:grid-cols-1 grid-cols w-full gap-3 lg:px-9 md:px-5 px-1">
           <Swiper
             modules={[Pagination]}
-            spaceBetween={10}
+            spaceBetween={12}
             slidesPerView={1}
             allowTouchMove={false}
             loop={false}
@@ -36,15 +36,15 @@ export default function Testimonial() {
               el: ".swiper-pagination-custom",
               clickable: true,
             }}
-            className="mySwiper flex items-center lg:w-[50%] md:w-[60%] w-full"
+            className="mySwiper flex items-center lg:w-[52%] md:w-[60%] w-full"
           >
             {TESTIMONIAL.map((con, i) => (
               <SwiperSlide
-                className="h-[fit] w-full flex justify-center items-center"
+                className="h-[fit] w-full flex justify-center items-center shadow-md shadow-[#00000040]"
                 key={i}
               >
                 <div
-                  className="flex flex-col gap-3 w-full py-3 px-2 rounded-[8px] md:h-67 h-75 shadow-md bg-white items-center"
+                  className="flex flex-col gap-3 w-full py-3 px-2 rounded-[8px] md:h-67 h-75 shadow-lg border border-[#00000040] bg-white items-center"
                   key={i}
                 >
                   {/* <Image
