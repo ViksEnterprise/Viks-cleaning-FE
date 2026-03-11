@@ -8,7 +8,7 @@ import { motion } from "motion/react";
 
 export default function Testimonial() {
   return (
-    <section className="w-full mt-5 bg-gradient-to-r from-[#0e21a2]/90 to-[#2c4cf9]/90 h-[fit] flex flex-col items-center justify-center">
+    <section className="w-full mt-5 h-[fit] flex flex-col items-center justify-center">
       <div className="flex items-center w-full justify-center p-3 my-3 pb-6 flex-col gap-4">
         <h5
           className={`md:text-3xl text-2xl uppercase text-white text-center`}
