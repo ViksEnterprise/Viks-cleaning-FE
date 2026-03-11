@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { SERVICES } from "../component/services";
 import { useEffect, useState } from "react";
+import Testimonial from "../component/Review";
 
 export default function LandingPage() {
   const [mobile, setMobile] = useState(
@@ -72,7 +73,9 @@ export default function LandingPage() {
         <div className="grid gap-6 items-start p-5 md:w-6xl w-full">
           <div className="flex justify-between flex-col md:flex-row gap-5 items-start w-full">
             <div className="grid space-y-2 itms-start md:w-2xs w-full">
-              <h3 className="lg:text-sm md:text-base text-lg uppercase font-medium">About us</h3>
+              <h3 className="lg:text-sm md:text-base text-lg uppercase font-medium">
+                About us
+              </h3>
               <span className="m-0 md:text-2xl text-xl leading-[155%]">
                 <span className="text-[#00008B]">Your top choice</span> for
                 cleaning service
@@ -191,7 +194,8 @@ export default function LandingPage() {
           )}
         </div>
       </div>
-      <div className="md:h-screen h-fit md:p-0 px-3 flex flex-col gap-4 items-center">
+      <hr className="text-[#E7E7E7]" />
+      <div className="md:h-screen h-fit md:py-5 px-3 flex flex-col gap-4 items-center py-0 mb-5">
         <div className="grid gap-6 items-start p-5 py-7 md:w-6xl w-full bg-[#00000033] h-full rounded-2xl">
           <div className="flex justify-between items-center w-full mt-5">
             <div className="grid gap-5 itms-start md:w-lg w-full">
@@ -209,36 +213,39 @@ export default function LandingPage() {
                 Request service
               </a>
             </div>
-            {!mobile && <div className="flex w-xl flex-col items-start relative">
-              <div className="w-full">
-                <Image
-                  src="/img/viks-clean.jpeg"
-                  className="rounded-2xl"
-                  alt=""
-                  width={500}
-                  height={500}
-                />
+            {!mobile && (
+              <div className="flex w-xl flex-col items-start relative">
+                <div className="w-full">
+                  <Image
+                    src="/img/viks-clean.jpeg"
+                    className="rounded-2xl"
+                    alt=""
+                    width={500}
+                    height={500}
+                  />
+                </div>
+                <div className="w-full flex gap-3 absolute -start-7 bottom-0">
+                  <Image
+                    src="/img/viks-clean.jpg"
+                    className="rounded-2xl w-68 -rotate-[20deg] -start-[3em] -bottom-[6em] relative"
+                    alt=""
+                    width={500}
+                    height={500}
+                  />
+                  <Image
+                    src="/img/viks-office.jpg"
+                    className="rounded-2xl w-68 rotate-[20deg] -end-[2em] -bottom-[6em] relative"
+                    alt=""
+                    width={500}
+                    height={500}
+                  />
+                </div>
               </div>
-              <div className="w-full flex gap-3 absolute -start-7 bottom-0">
-                <Image
-                  src="/img/viks-clean.jpg"
-                  className="rounded-2xl w-68 -rotate-[20deg] -start-[3em] -bottom-[6em] relative"
-                  alt=""
-                  width={500}
-                  height={500}
-                />
-                <Image
-                  src="/img/viks-office.jpg"
-                  className="rounded-2xl w-68 rotate-[20deg] -end-[2em] -bottom-[6em] relative"
-                  alt=""
-                  width={500}
-                  height={500}
-                />
-              </div>
-            </div>}
+            )}
           </div>
         </div>
       </div>
+      <Testimonial />
     </div>
   );
 }

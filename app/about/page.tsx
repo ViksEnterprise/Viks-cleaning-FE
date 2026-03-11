@@ -1,11 +1,33 @@
+"use client";
+
 import Image from "next/image";
 import { VALUE } from "../component/values";
+import { useEffect, useState } from "react";
 
 export default function About() {
+  const [mobile, setMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth <= 780 : false,
+  );
+  const [isMounted, setIsMounted] = useState(false);
+
+  const checkWindowWIdth = () => {
+    setMobile(window.innerWidth <= 765);
+  };
+
+  useEffect(() => {
+    setIsMounted(true);
+
+    checkWindowWIdth();
+    window.addEventListener("resize", checkWindowWIdth);
+
+    return () => window.removeEventListener("resize", checkWindowWIdth);
+  }, []);
+  if (!isMounted) return null;
+
   return (
     <div>
-      <div className="flex w-full items-center justify-center h-screen">
-        <div className="flex w-6xl items-center justify-between p-5">
+      <div className="flex w-full items-center justify-center h-screen py-5 mt-5">
+        <div className="flex w-6xl items-center justify-between p-5 mt-5 pt-5">
           <div className="relative w-fit">
             <Image
               src="/img/about.jpg"
@@ -57,18 +79,18 @@ export default function About() {
         </div>
       </div>
       <hr className="text-[#E7E7E7]" />
-      <div className="flex w-full items-center justify-center h-screen bg-[#4942ea] text-white">
-        <div className="flex w-6xl p-5">
+      <div className="flex w-full items-center justify-center md:h-screen h-full bg-[#4942ea] text-white">
+        <div className="flex md:w-6xl w-full p-5">
           <div className="grid justify-between space-y-8 h-full items-start w-full">
-            <h2 className="text-center text-3xl font-semibold uppercase mb-5">
+            <h2 className="text-center text-3xl font-semibold uppercase md:mb-5 mb-2">
               Our values
             </h2>
-            <div className="grid grid-cols-3 mt-5 pt-5 gap-5">
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols md:mt-5 mt-0 pt-5 gap-5">
               {VALUE.map((val, i) => {
                 const Icon = val.icon;
                 return (
                   <div
-                    className="h-54 rounded-lg flex flex-col gap-4 border-white border px-5 justify-center mt-5"
+                    className="h-54 rounded-lg flex flex-col gap-4 border-white border px-5 justify-center md:mt-5 mt-3"
                     key={i}
                   >
                     <div className="h-7 w-7 rounded-full bg-[#FF0000] relative flex items-start justify-end">
@@ -84,7 +106,7 @@ export default function About() {
         </div>
       </div>
       <div className="flex w-full items-center justify-center h-72">
-        <div className="flex w-6xl items-center justify-between p-5">
+        <div className="flex md:w-6xl w-full items-center justify-between p-5">
           <div className="flex flex-col gap-6 items-center w-full text-center">
             <h2 className="text-center text-[#00008B] text-4xl font-semibold">
               If you have any questions
@@ -92,7 +114,10 @@ export default function About() {
             <span className="text-base font-medium">
               Feel free to contact us by clicking on the button
             </span>
-            <a href="/contact" className="bg-[#0C06AC] text-sm h-11 flex items-center justify-center w-42 cursor-pointer rounded-lg text-white p-3 px-4 m-0">
+            <a
+              href="/contact"
+              className="bg-[#0C06AC] text-sm h-11 flex items-center justify-center w-42 cursor-pointer rounded-lg text-white p-3 px-4 m-0"
+            >
               Contact us
             </a>
           </div>

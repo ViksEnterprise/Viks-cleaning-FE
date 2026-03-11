@@ -56,9 +56,9 @@ export default function NavBar() {
                   <li key={i}>
                     <a
                       className={`${
-                        item.path !== "Enroll Now"
+                        item.path !== "Book Now"
                           ? "font-[200]"
-                          : "font-[200] h-11 rounded-[4px] bg-[#f6a31f] p-2 w-45"
+                          : "font-[200] h-11 rounded-[4px] text-white bg-[#171717] p-2 w-45"
                       }`}
                       href={`${item.url}`}
                       onClick={closeNavMenu}
