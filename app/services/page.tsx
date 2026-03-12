@@ -4,7 +4,7 @@ import { SERVICES } from "../component/services";
 export default function OurServices() {
   return (
     <div>
-      <div className="bg-[url('/img/service.jpg')] w-full h-110 bg-no-repeat bg-cover bg-center relative before:bg-black/75 before:h-full before:w-full before:absolute before:z-1 text-white flex items-center justify-center">
+      <div className="bg-[url('/img/service.jpg')] w-full h-115 bg-no-repeat bg-cover bg-center relative before:bg-black/60 before:h-full before:w-full before:absolute before:z-1 text-white flex items-center justify-center">
         <h2 className="relative z-2 text-5xl font-semibold uppercase">
           Our services
         </h2>
