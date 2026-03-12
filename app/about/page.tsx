@@ -28,39 +28,72 @@ export default function About() {
   return (
     <div>
       <div className="flex w-full items-center justify-center lg:h-screen h-full py-5 mt-5">
-        <div className="flex w-6xl items-center justify-between p-5 mt-5 pt-5">
-          <div className="relative w-fit">
-            <Image
-              src="/img/about.jpg"
-              alt=""
-              className="h-120 w-lg rounded-br-[5em]"
-              height={500}
-              width={500}
-            />
-            <Image
-              src="/img/viks-office.jpg"
-              alt=""
-              className="h-62 w-sm absolute -bottom-[4em] rounded-br-[3em]"
-              height={500}
-              width={500}
-            />
-          </div>
-          <div className="grid gap-5 items-start w-xl">
-            <h2 className="text-center text-[#00008B] text-4xl font-semibold uppercase">
-              About
-            </h2>
-            <span className="text-base px-4 w-[98%]">
-              At Viks Cleaning, we take pride in delivering premium cleaning
-              services that consistently exceed expectations. With a deep
-              passion for hygiene and an unwavering commitment to quality, our
-              experienced professionals work diligently to ensure every space we
-              touch is left spotless, fresh, and thoroughly sanitized.
-            </span>
-            <div className="flex flex-col px-4 gap-3 w-[90%]">
-              <span className="text-base font-semibold">
-                Trusted Cleaning Solutions with a Commitment to Care
+        {!mobile ? (
+          <div className="flex w-6xl items-center justify-between p-5 mt-7 pt-5">
+            <div className="relative w-fit">
+              <Image
+                src="/img/about.jpg"
+                alt=""
+                className="h-120 w-lg rounded-br-[5em]"
+                height={500}
+                width={500}
+              />
+              <Image
+                src="/img/viks-office.jpg"
+                alt=""
+                className="h-62 w-sm absolute -bottom-[4em] rounded-br-[3em]"
+                height={500}
+                width={500}
+              />
+            </div>
+            <div className="grid gap-5 items-start w-xl">
+              <h2 className="text-center text-[#00008B] text-4xl font-semibold uppercase">
+                About
+              </h2>
+              <span className="text-base px-4 w-[98%]">
+                At Viks Cleaning, we take pride in delivering premium cleaning
+                services that consistently exceed expectations. With a deep
+                passion for hygiene and an unwavering commitment to quality, our
+                experienced professionals work diligently to ensure every space
+                we touch is left spotless, fresh, and thoroughly sanitized.
               </span>
-              <span className="text-base">
+              <div className="flex flex-col px-4 gap-3 w-[90%]">
+                <span className="text-base font-semibold">
+                  Trusted Cleaning Solutions with a Commitment to Care
+                </span>
+                <span className="text-base">
+                  We understand that every space deserves meticulous care,
+                  whether it’s a private residence, commercial facility, or
+                  transitional property. We specialize in delivering reliable,
+                  detail-oriented cleaning services tailored to meet the
+                  specific needs of each client. From deep surface treatments to
+                  specialized carpet care, our services are designed with
+                  precision, flexibility, and consistency at their core.
+                </span>
+                <span className="text-base">
+                  Our commitment extends beyond clean spaces. We prioritize your
+                  well-being and the environment by using non-toxic,
+                  eco-conscious products and sustainable cleaning methods
+                  ensuring a safer, healthier home for you, your family, and
+                  your pets.
+                </span>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="grid w-full gap-4 p-5 mt-8 pt-7">
+            <div className="grid gap-4">
+              <Image
+                src="/img/about.jpg"
+                alt=""
+                className="h-84 w-full rounded-xl"
+                height={500}
+                width={500}
+              />
+              <span className="text-base font-semibold">
+                Let's Us Take Care of Your Cleaning Needs
+              </span>
+              <span className="text-sm">
                 We understand that every space deserves meticulous care, whether
                 it’s a private residence, commercial facility, or transitional
                 property. We specialize in delivering reliable, detail-oriented
@@ -69,15 +102,28 @@ export default function About() {
                 our services are designed with precision, flexibility, and
                 consistency at their core.
               </span>
-              <span className="text-base">
-                Our commitment extends beyond clean spaces. We prioritize your
-                well-being and the environment by using non-toxic, eco-conscious
-                products and sustainable cleaning methods ensuring a safer,
-                healthier home for you, your family, and your pets.
+            </div>
+            <div className="grid gap-5 w-full">
+              <Image
+                src="/img/about-2.jpeg"
+                alt=""
+                className="h-84 w-full rounded-xl"
+                height={500}
+                width={500}
+              />
+              <h2 className="text-2xl font-semibold uppercase">
+                Who we are
+              </h2>
+              <span className="text-sm w-full">
+                At Viks Cleaning, we take pride in delivering premium cleaning
+                services that consistently exceed expectations. With a deep
+                passion for hygiene and an unwavering commitment to quality, our
+                experienced professionals work diligently to ensure every space
+                we touch is left spotless, fresh, and thoroughly sanitized.
               </span>
             </div>
           </div>
-        </div>
+        )}
       </div>
       <hr className="text-[#BDBDBD]" />
       <div className="flex w-full items-center justify-center lg:h-screen h-full bg-[#4942ea] text-white">
