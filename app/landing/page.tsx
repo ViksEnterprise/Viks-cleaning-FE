@@ -163,15 +163,15 @@ export default function LandingPage() {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-4 items-end mt-5">
+            <div className="grid grid-cols gap-4 items-end mt-5">
               {SERVICES.slice(0, 2).map((val, i) => (
                 <div
-                  className="shadow-[#00000040] h-68 shadow border-[#E7E7E7] border p-5 rounded-lg flex items-start justify-between flex-col gap-5 cursor-pointer"
+                  className="shadow-[#00000040] h-78 shadow border-[#E7E7E7] border p-5 rounded-lg flex items-start justify-between flex-col gap-5 cursor-pointer"
                   key={i}
                 >
                   <span className="text-xl">{val.title}</span>
                   <Image
-                    className="h-42 w-full rounded-lg"
+                    className="h-52 w-full rounded-lg"
                     src={val.img}
                     alt=""
                     width={500}
