@@ -1,10 +1,11 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 import localFont from "next/font/local";
 import Image from "next/image";
 import { TESTIMONIAL } from "./test";
 import { motion } from "motion/react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 export default function Testimonial() {
   return (
@@ -25,9 +26,9 @@ export default function Testimonial() {
             What our clients say
           </motion.h5>
         </h5>
-        <div className="grid md:grid-cols-1 grid-cols w-full gap-3 lg:px-9 md:px-5 px-1">
+        <div className="grid md:grid-cols-1 grid-cols w-full gap-3 lg:px-9 md:px-5 px-1 relative justify-center">
           <Swiper
-            modules={[Pagination]}
+            modules={[Pagination, Navigation]}
             spaceBetween={12}
             slidesPerView={1}
             allowTouchMove={false}
@@ -35,6 +36,10 @@ export default function Testimonial() {
             pagination={{
               el: ".swiper-pagination-custom",
               clickable: true,
+            }}
+            navigation={{
+              prevEl: ".prev-btn",
+              nextEl: ".next-btn",
             }}
             className="mySwiper flex items-center lg:w-[52%] md:w-[60%] w-full"
           >
@@ -64,6 +69,16 @@ export default function Testimonial() {
               </SwiperSlide>
             ))}
           </Swiper>
+          <div className="absolute bottom-0 top-0 w-full h-full items-center justify-center end-0 z-2 md:m-0 mt-5 flex gap-4">
+            <div className="md:w-[70%] w-full h-full items-center justify-between flex gap-4">
+              <button className="prev-btn bg-[#FF0000] disabled:bg-[#BDBDBD] hover:bg-[#FF0000]/40 text-white md:w-14 w-9 md:h-14 h-9 rounded-full flex items-center justify-center transition-all shadow-lg cursor-pointer md:m-0 -ms-3">
+                <FaChevronLeft className="md:text-xl text-base" size="20" />
+              </button>
+              <button className="next-btn bg-[#FF0000] disabled:bg-[#BDBDBD] hover:bg-[#FF0000]/40 text-white md:w-14 w-9 md:h-14 h-9 rounded-full flex items-center justify-center transition-all shadow-lg cursor-pointer md:m-0 -me-3">
+                <FaChevronRight className="md:text-xl text-base" size="20" />
+              </button>
+            </div>
+          </div>
         </div>
         <button className="swiper-pagination-custom"></button>
       </div>
