@@ -122,7 +122,7 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
-      <hr className="text-[#E7E7E7]" />
+      <hr className="text-[#0D05D2]" />
       <div className="lg:h-screen h-full flex flex-col gap-4 items-center">
         <div className="grid gap-6 items-start p-5 xl:w-6xl w-full">
           <div className="flex md:flex-row flex-col justify-between items-center w-full">
@@ -148,7 +148,7 @@ export default function LandingPage() {
             <div className="grid grid-cols-3 gap-4 items-end mt-5">
               {SERVICES.slice(0, 3).map((val, i) => (
                 <div
-                  className="shadow-[#00000040] h-88 shadow border-[#E7E7E7] border p-5 rounded-lg flex items-start justify-between flex-col gap-5 cursor-pointer"
+                  className="shadow-[#00000040] h-88 shadow border-[#0D05D2] border p-5 rounded-lg flex items-start justify-between flex-col gap-5 cursor-pointer"
                   key={i}
                 >
                   <span className="text-2xl">{val.title}</span>
@@ -166,7 +166,7 @@ export default function LandingPage() {
             <div className="grid grid-cols gap-4 items-end mt-5">
               {SERVICES.slice(0, 2).map((val, i) => (
                 <div
-                  className="shadow-[#00000040] h-78 shadow border-[#E7E7E7] border p-5 rounded-lg flex items-start justify-between flex-col gap-5 cursor-pointer"
+                  className="shadow-[#00000040] h-78 shadow border-[#0D05D2] border p-5 rounded-lg flex items-start justify-between flex-col gap-5 cursor-pointer"
                   key={i}
                 >
                   <span className="text-xl">{val.title}</span>
@@ -194,7 +194,7 @@ export default function LandingPage() {
           )}
         </div>
       </div>
-      <hr className="text-[#E7E7E7]" />
+      <hr className="text-[#0D05D2]" />
       <div className="lg:h-screen sm:h-130 h-fit md:py-5 px-3 flex flex-col gap-4 items-center py-0 mb-5 relative">
         <div className="grid gap-6 items-start p-5 py-7 xl:w-6xl w-full bg-[#00000033] h-full rounded-2xl">
           <div className="flex justify-between items-center w-full mt-5">
@@ -245,7 +245,7 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
-      <hr className="text-[#E7E7E7]" />
+      <hr className="text-[#0D05D2]" />
       <Testimonial />
     </div>
   );
