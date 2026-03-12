@@ -27,7 +27,7 @@ export default function LandingPage() {
 
   return (
     <div className="w-full">
-      <div className="md:bg-[#E5E8FF] bg-white w-full md:h-screen h-full flex items-end justify-center gap-6 md:pt-0 pt-5">
+      <div className="md:bg-[#E5E8FF] bg-white w-full lg:h-screen sm:h-svh h-full flex items-end justify-center gap-6 lg:pt-0 py-3 pt-5">
         <div className="flex flex-col md:flex-row items-end md:gap-6 gap-5 lg:items-start items-center justify-between md:w-6xl w-full px-5  md:pt-0 pt-5">
           <div className="flex flex-col md:gap-5 gap-4 md:w-lg w-full justify-center h-full font-bold md:pt-0 pt-5 md:mt-0 mt-7">
             <div className="bg-[#0C06AC] text-xs h-10 flex items-center justify-center w-fit rounded-3xl text-white p-3 px-4 md:mt-0 mt-7">
