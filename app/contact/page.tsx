@@ -5,7 +5,7 @@ import { SlLocationPin } from "react-icons/sl";
 export default function Contact() {
   return (
     <div>
-      <div className="bg-[url('/img/contact.jpg')] w-full lg:h-screen sm:h-135 h-svh bg-no-repeat bg-cover bg-center relative before:bg-black/55 before:h-full before:w-full before:absolute before:z-1 text-white flex items-center justify-center">
+      <div className="bg-[url('/img/contact.jpg')] w-full lg:h-screen sm:h-160 h-svh bg-no-repeat bg-cover bg-center relative before:bg-black/55 before:h-full before:w-full before:absolute before:z-1 text-white flex items-center justify-center">
         <h2 className="relative z-2 text-5xl font-semibold uppercase">
           Contact us
         </h2>
