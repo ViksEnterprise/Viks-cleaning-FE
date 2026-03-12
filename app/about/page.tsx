@@ -79,7 +79,7 @@ export default function About() {
           </div>
         </div>
       </div>
-      <hr className="text-[#0D05D2]" />
+      <hr className="text-[#BDBDBD]" />
       <div className="flex w-full items-center justify-center lg:h-screen h-full bg-[#4942ea] text-white">
         <div className="flex md:w-6xl w-full p-5">
           <div className="grid justify-between space-y-8 h-full items-start w-full">
@@ -106,9 +106,9 @@ export default function About() {
           </div>
         </div>
       </div>
-      <hr className="text-[#0D05D2]" />
+      <hr className="text-[#BDBDBD]" />
       <Testimonial />
-      <hr className="text-[#0D05D2]" />
+      <hr className="text-[#BDBDBD]" />
       <div className="flex w-full items-center justify-center h-72">
         <div className="flex md:w-6xl w-full items-center justify-between p-5">
           <div className="flex flex-col gap-6 items-center w-full text-center">
