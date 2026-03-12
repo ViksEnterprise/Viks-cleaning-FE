@@ -195,10 +195,10 @@ export default function LandingPage() {
         </div>
       </div>
       <hr className="text-[#E7E7E7]" />
-      <div className="md:h-screen h-fit md:py-5 px-3 flex flex-col gap-4 items-center py-0 mb-5 hidden">
-        <div className="grid gap-6 items-start p-5 py-7 md:w-6xl w-full bg-[#00000033] h-full rounded-2xl">
+      <div className="md:h-screen h-fit md:py-5 px-3 flex flex-col gap-4 items-center py-0 mb-5">
+        <div className="grid gap-6 items-start p-5 py-7 xl:w-6xl w-full bg-[#00000033] h-full rounded-2xl">
           <div className="flex justify-between items-center w-full mt-5">
-            <div className="grid gap-5 itms-start md:w-lg w-full">
+            <div className="grid gap-5 itms-start xl:w-lg lg:w-sm sm:w-2xs w-full">
               <h2 className="md:text-2xl text-xl font-medium">
                 Our Commitment to Excellence Experiences
               </h2>
@@ -214,7 +214,7 @@ export default function LandingPage() {
               </a>
             </div>
             {!mobile && (
-              <div className="flex w-xl flex-col items-start relative">
+              <div className="flex xl:w-xl sm:w-sm flex-col items-start relative">
                 <div className="w-full">
                   <Image
                     src="/img/viks-clean.jpeg"
@@ -224,17 +224,17 @@ export default function LandingPage() {
                     height={500}
                   />
                 </div>
-                <div className="w-full flex gap-3 absolute -start-7 bottom-0">
+                <div className="w-full flex gap-3 absolute xl:-start-7 lg:-start-[6em] bottom-0">
                   <Image
                     src="/img/viks-clean.jpg"
-                    className="rounded-2xl w-68 -rotate-[20deg] -start-[3em] -bottom-[6em] relative"
+                    className="rounded-2xl xl:w-68 lg:w-49 w-44 -rotate-[20deg] xl:-start-[3em] lg:-end-[2em] sm:-start-[2em] xl:-bottom-[6em] lg:-bottom-[5em] -bottom-[4em] relative"
                     alt=""
                     width={500}
                     height={500}
                   />
                   <Image
                     src="/img/viks-office.jpg"
-                    className="rounded-2xl w-68 rotate-[20deg] -end-[2em] -bottom-[6em] relative"
+                    className="rounded-2xl xl:w-68 lg:w-49 w-44 rotate-[20deg] xl:-end-[2em] lg:-end-[5em] -end-[1.7em] xl:-bottom-[6em] lg:-bottom-[5em] -bottom-[4em] relative"
                     alt=""
                     width={500}
                     height={500}

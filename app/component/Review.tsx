@@ -71,10 +71,10 @@ export default function Testimonial() {
           </Swiper>
           <div className="absolute bottom-0 top-0 w-full h-full items-center justify-center end-0 z-2 md:m-0 mt-5 flex gap-4">
             <div className="md:w-[70%] w-full h-full items-center justify-between flex gap-4">
-              <button className="prev-btn bg-[#FF0000] disabled:bg-[#BDBDBD] hover:bg-[#FF0000]/40 text-white md:w-14 w-9 md:h-14 h-9 rounded-full flex items-center justify-center transition-all shadow-lg cursor-pointer md:m-0 -ms-3">
+              <button className="prev-btn bg-[#0D05D2] disabled:bg-[#BDBDBD] hover:bg-[#0D05D2]/40 text-white md:w-14 w-9 md:h-14 h-9 rounded-full flex items-center justify-center transition-all shadow-lg cursor-pointer md:m-0 -ms-3">
                 <FaChevronLeft className="md:text-xl text-base" size="20" />
               </button>
-              <button className="next-btn bg-[#FF0000] disabled:bg-[#BDBDBD] hover:bg-[#FF0000]/40 text-white md:w-14 w-9 md:h-14 h-9 rounded-full flex items-center justify-center transition-all shadow-lg cursor-pointer md:m-0 -me-3">
+              <button className="next-btn bg-[#0D05D2] disabled:bg-[#BDBDBD] hover:bg-[#0D05D2]/40 text-white md:w-14 w-9 md:h-14 h-9 rounded-full flex items-center justify-center transition-all shadow-lg cursor-pointer md:m-0 -me-3">
                 <FaChevronRight className="md:text-xl text-base" size="20" />
               </button>
             </div>
