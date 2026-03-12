@@ -70,7 +70,7 @@ export default function LandingPage() {
         </div>
       </div>
       <div className="lg:h-screen h-fit md:mt-0 mt-4 flex flex-col gap-4 items-center">
-        <div className="grid gap-6 items-start p-5 md:w-6xl w-full">
+        <div className="grid gap-6 items-start p-5 xl:w-6xl w-full">
           <div className="flex justify-between flex-col md:flex-row gap-5 items-start w-full">
             <div className="grid space-y-2 itms-start md:w-2xs w-full">
               <h3 className="lg:text-sm md:text-base text-lg uppercase font-medium">
@@ -81,7 +81,7 @@ export default function LandingPage() {
                 cleaning service
               </span>
             </div>
-            <div className="md:w-xl w-full flex items-end justify-end md:h-34 h-fit">
+            <div className="lg::w-xl sm:w-sm w-full flex items-end justify-end md:h-34 h-fit">
               <span className="text-sm leading-[145%]">
                 At Viks Cleaning, we understand that a clean space is essential
                 to health, productivity, and peace of mind. Backed by trained
@@ -123,7 +123,7 @@ export default function LandingPage() {
         </div>
       </div>
       <hr className="text-[#E7E7E7]" />
-      <div className="lg:h-screen md:h-svh h-full flex flex-col gap-4 items-center">
+      <div className="lg:h-screen md:h-svh h-full flex flex-col gap-4 items-center hidden">
         <div className="grid gap-6 items-start p-5 md:w-6xl w-full">
           <div className="flex md:flex-row flex-col justify-between items-center w-full">
             <div className="grid space-y-2 itms-start md:w-xs w-full">
@@ -195,7 +195,7 @@ export default function LandingPage() {
         </div>
       </div>
       <hr className="text-[#E7E7E7]" />
-      <div className="md:h-screen h-fit md:py-5 px-3 flex flex-col gap-4 items-center py-0 mb-5">
+      <div className="md:h-screen h-fit md:py-5 px-3 flex flex-col gap-4 items-center py-0 mb-5 hidden">
         <div className="grid gap-6 items-start p-5 py-7 md:w-6xl w-full bg-[#00000033] h-full rounded-2xl">
           <div className="flex justify-between items-center w-full mt-5">
             <div className="grid gap-5 itms-start md:w-lg w-full">
