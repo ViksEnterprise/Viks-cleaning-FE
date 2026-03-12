@@ -26,7 +26,7 @@ export default function About() {
 
   return (
     <div>
-      <div className="flex w-full items-center justify-center h-screen py-5 mt-5">
+      <div className="flex w-full items-center justify-center lg:h-screen h-full py-5 mt-5">
         <div className="flex w-6xl items-center justify-between p-5 mt-5 pt-5">
           <div className="relative w-fit">
             <Image
@@ -79,7 +79,7 @@ export default function About() {
         </div>
       </div>
       <hr className="text-[#E7E7E7]" />
-      <div className="flex w-full items-center justify-center md:h-screen h-full bg-[#4942ea] text-white">
+      <div className="flex w-full items-center justify-center lg:h-screen h-full bg-[#4942ea] text-white">
         <div className="flex md:w-6xl w-full p-5">
           <div className="grid justify-between space-y-8 h-full items-start w-full">
             <h2 className="text-center text-3xl font-semibold uppercase md:mb-5 mb-2">
