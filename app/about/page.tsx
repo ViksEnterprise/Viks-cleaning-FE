@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { VALUE } from "../component/values";
 import { useEffect, useState } from "react";
+import Testimonial from "../component/Review";
 
 export default function About() {
   const [mobile, setMobile] = useState(
@@ -105,6 +106,9 @@ export default function About() {
           </div>
         </div>
       </div>
+      <hr className="text-[#E7E7E7]" />
+      <Testimonial />
+      <hr className="text-[#E7E7E7]" />
       <div className="flex w-full items-center justify-center h-72">
         <div className="flex md:w-6xl w-full items-center justify-between p-5">
           <div className="flex flex-col gap-6 items-center w-full text-center">
