@@ -195,7 +195,7 @@ export default function LandingPage() {
         </div>
       </div>
       <hr className="text-[#E7E7E7]" />
-      <div className="lg:h-screen h-fit md:py-5 px-3 flex flex-col gap-4 items-center py-0 mb-5 relative">
+      <div className="lg:h-screen sm:h-160 h-fit md:py-5 px-3 flex flex-col gap-4 items-center py-0 mb-5 relative">
         <div className="grid gap-6 items-start p-5 py-7 xl:w-6xl w-full bg-[#00000033] h-full rounded-2xl">
           <div className="flex justify-between items-center w-full mt-5">
             <div className="grid gap-5 itms-start xl:w-lg lg:w-sm sm:w-2xs w-full">
