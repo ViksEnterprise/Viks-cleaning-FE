@@ -55,9 +55,11 @@ export default function LandingPage() {
               variants={{
                 hidden: { scale: 0, opacity: 0 },
                 visible: { scale: 1, opacity: 1 },
-              }} className="text-base font-normal m-0 p-0 leading-[145%]">
-                We take pride in our attention to detail and providing maximum
-                customer satisfaction.
+              }}
+              className="text-base font-normal m-0 p-0 leading-[145%]"
+            >
+              We take pride in our attention to detail and providing maximum
+              customer satisfaction.
             </motion.span>
             <motion.div
               initial="hidden"
@@ -87,7 +89,7 @@ export default function LandingPage() {
             {!mobile ? (
               <Image
                 className="h-120 w-full"
-                src="/img/hero.jpeg"
+                src="/img/hero.png"
                 alt=""
                 width={500}
                 height={400}
@@ -213,10 +215,19 @@ export default function LandingPage() {
               <h3 className="lg:text-sm md:text-base text-lg uppercase font-medium">
                 Our services
               </h3>
-              <span className="m-0 md:text-xl lg:text-2xl text-lg leading-[155%]">
+              <motion.span
+                whileInView={"visible"}
+                transition={{ duration: 1.2 }}
+                initial="hidden"
+                variants={{
+                  hidden: { x: -120, opacity: 0 },
+                  visible: { x: 0, opacity: 1 },
+                }}
+                className="m-0 md:text-xl lg:text-2xl text-lg leading-[155%]"
+              >
                 Explore our
                 <span className="text-[#00008B]"> cleaning services</span>
-              </span>
+              </motion.span>
             </div>
             {!mobile && (
               <a
@@ -230,7 +241,14 @@ export default function LandingPage() {
           {!mobile ? (
             <div className="grid grid-cols-3 gap-4 items-end mt-5">
               {SERVICES.slice(0, 3).map((val, i) => (
-                <div
+                <motion.div
+                  whileInView={"visible"}
+                  transition={{ duration: 1.2 }}
+                  initial="hidden"
+                  variants={{
+                    hidden: { y: 70, opacity: 0 },
+                    visible: { y: 0, opacity: 1 },
+                  }}
                   className="shadow-[#00000040] h-92 shadow border-[#BDBDBD] border p-5 rounded-lg flex items-start justify-between flex-col gap-5 cursor-pointer"
                   key={i}
                 >
@@ -242,13 +260,20 @@ export default function LandingPage() {
                     width={500}
                     height={400}
                   />
-                </div>
+                </motion.div>
               ))}
             </div>
           ) : (
             <div className="grid grid-cols gap-4 items-end mt-5">
               {SERVICES.slice(0, 2).map((val, i) => (
-                <div
+                <motion.div
+                  whileInView={"visible"}
+                  transition={{ duration: 1.2 }}
+                  initial="hidden"
+                  variants={{
+                    hidden: { y: 70, opacity: 0 },
+                    visible: { y: 0, opacity: 1 },
+                  }}
                   className="shadow-[#00000040] h-86 shadow border-[#BDBDBD] border p-5 rounded-lg flex items-start justify-between flex-col gap-5 cursor-pointer"
                   key={i}
                 >
@@ -260,7 +285,7 @@ export default function LandingPage() {
                     width={500}
                     height={400}
                   />
-                </div>
+                </motion.div>
               ))}
             </div>
           )}
