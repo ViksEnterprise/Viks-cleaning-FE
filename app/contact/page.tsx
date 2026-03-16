@@ -1,14 +1,27 @@
+"use client";
+
 import { BiGlobe, BiPhone } from "react-icons/bi";
 import { CgMail } from "react-icons/cg";
 import { SlLocationPin } from "react-icons/sl";
+import { motion } from "motion/react";
 
 export default function Contact() {
   return (
     <div>
-      <div className="bg-[url('/img/contact.jpg')] w-full lg:h-screen sm:h-160 h-svh bg-no-repeat bg-cover bg-center relative before:bg-black/55 before:h-full before:w-full before:absolute before:z-1 text-white flex items-center justify-center">
-        <h2 className="relative z-2 text-5xl font-semibold uppercase">
-          Contact us
-        </h2>
+      <div className="bg-[url('/img/contact.jpg')] w-full lg:h-screen sm:h-160 h-svh bg-no-repeat bg-cover bg-center relative before:bg-black/55 before:h-full before:w-full before:absolute before:z-1 text-white flex items-center justify-center overflow-hidden">
+        <motion.h2
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 1.2 }}
+          variants={{
+            hidden: { x: -150, opacity: 0 },
+            visible: { x: 0, opacity: 1 },
+          }}
+        >
+          <h2 className="relative z-2 text-5xl font-semibold uppercase">
+            Contact us
+          </h2>
+        </motion.h2>
       </div>
       <div className="flex items-center justify-center w-full py-5">
         <div className="p-5 w-6xl flex md:flex-row flex-col-reverse items-center gap-4 sm:h-160 h-fit justify-between">
@@ -45,7 +58,7 @@ export default function Contact() {
                 className="resize-none h-48 rounded-lg w-full border-[#000000] border"
               ></textarea>
             </div>
-            <button className="bg-[#0C06AC] text-sm h-10 flex items-center justify-center w-full cursor-pointer rounded-lg text-white p-3 px-4 m-0">
+            <button className="bg-[#0C06AC] text-sm h-12 flex items-center justify-center w-full cursor-pointer rounded-lg text-white p-3 px-4 m-0">
               Send message
             </button>
           </form>
