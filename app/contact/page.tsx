@@ -56,7 +56,7 @@ export default function Contact() {
     } else if (startWithDigit.test(form.message)) {
       errors.message = "Message must not start with digits";
     } else {
-      const url = "forms";
+      const url = "forms/";
       setLoading(true);
       try {
         const detail = await postToAPI(form, url);
