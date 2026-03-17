@@ -42,7 +42,7 @@ export default function NavBar() {
         <div className="flex justify-between items-center w-[90%] p-3 py-2">
           <div className="w-[fit] h-fit">
             <Image
-              src="/img/logo-no-bg.jpeg"
+              src="/img/logo-no-bg.png"
               className="h-20"
               alt=""
               height={100}
@@ -75,7 +75,7 @@ export default function NavBar() {
         <div className="flex justify-between items-center w-full p-2 py-2">
           <div className="w-[fit]">
             <Image
-              src="/img/logo-no-bg.jpeg"
+              src="/img/logo-no-bg.png"
               className="h-20"
               alt=""
               height={100}
