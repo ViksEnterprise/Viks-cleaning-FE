@@ -27,7 +27,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ isOpen, close, id }) => {
           {detail?.title}
         </h2>
         <Image
-          src={detail.img}
+          src={`${detail?.img}`}
           className="lg:h-84 sm:h-72 h-52 rounded-lg border-gray-200 border w-full m-0"
           alt=""
           height={500}
