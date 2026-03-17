@@ -98,11 +98,11 @@ export default function Footer() {
               <span className="text-xl font-bold capitalize">Contact us</span>
               <div className="flex w-full flex-col gap-2">
                 <a
-                  href="tel:+2349046783567"
+                  href="tel:+447823972770"
                   className="font-[200] text-[0.90em] flex items-center gap-1"
                 >
                   <BiPhoneCall size={18} />
-                  +234 9046783567
+                  +44 7823972770
                 </a>
                 <a
                   href="mailto:vikscleaning@gmail.com"

@@ -122,7 +122,7 @@ export default function NavBar() {
                         className={`${
                           item.path !== "Book Now"
                             ? "font-[200]"
-                            : "flex items-center justify-center font-[200] h-11 rounded-[4px] text-white bg-[#00008B] p-2 w-40 flex items-center justify-centerll"
+                            : "flex items-center justify-center font-[200] h-12 rounded-[8px] text-white bg-[#00008B] p-2 w-full flex items-center justify-center"
                         }`}
                         href={`${item.url}`}
                         onClick={closeNavMenu}
