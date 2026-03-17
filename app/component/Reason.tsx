@@ -27,7 +27,7 @@ export default function WhyChooseUs() {
             <span>Here is why our customers choose us</span>
           </div>
         </div>
-        <div className="flex md:flex-row flex-col-reverse items-center gap-5 h-full overflow-hidden">
+        <div className="flex md:flex-row flex-col-reverse items-center md:gap-5 gap-7 h-full overflow-hidden">
           <div className="md:w-lg w-full flex flex-col gap-5">
             {WHYCHOOSEUS.map((val, i) => (
               <div className="grid grid-cols gap-3 w-full h-full" key={i}>
@@ -42,7 +42,7 @@ export default function WhyChooseUs() {
                         size={22}
                       />
                     </div>
-                    <span className="text-xl font-medium">{val.title}</span>
+                    <span className="md:text-xl text-base font-medium">{val.title}</span>
                   </div>
                   {activeID == i ? (
                     <BiChevronUp size={34} />
@@ -51,7 +51,7 @@ export default function WhyChooseUs() {
                   )}
                 </div>
                 {activeID == i && (
-                  <span className="text-base font-normal">{val.info}</span>
+                  <span className="md:text-base text-sm font-normal">{val.info}</span>
                 )}
               </div>
             ))}

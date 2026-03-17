@@ -7,10 +7,11 @@ import { NAVBAROUTE } from "./nav";
 
 export default function NavBar() {
   const [mobile, setMobile] = useState(
-    typeof window !== "undefined" ? window.innerWidth <= 780 : false
+    typeof window !== "undefined" ? window.innerWidth <= 780 : false,
   );
   const [openNav, setOpenNav] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const checkWindowWIdth = () => {
     setMobile(window.innerWidth <= 765);
@@ -26,18 +27,32 @@ export default function NavBar() {
     document.body.style.overflow = "auto";
   };
 
+  const isScrolled = () => {
+    setScrolled(window.pageYOffset > 0 ? true : false);
+  };
+
   useEffect(() => {
     setIsMounted(true);
 
     checkWindowWIdth();
     window.addEventListener("resize", checkWindowWIdth);
+    window.addEventListener("scroll", isScrolled);
 
-    return () => window.removeEventListener("resize", checkWindowWIdth);
+    return () => {
+      window.removeEventListener("resize", checkWindowWIdth);
+      window.removeEventListener("scroll", isScrolled);
+    };
   }, []);
   if (!isMounted) return null;
 
   return (
-    <header className="fixed top-0 w-full z-3 md:px-7 px-3 flex items-center justify-center py-2 h-24 bg-white shadow shadow-md">
+    <header
+      className={
+        !scrolled
+          ? "fixed top-0 w-full z-3 md:px-7 px-3 flex items-center justify-center py-2 h-24 bg-white"
+          : "fixed top-0 w-full z-3 md:px-7 px-3 flex items-center justify-center py-2 h-24 bg-white shadow shadow-md"
+      }
+    >
       {!mobile ? (
         <div className="flex justify-between items-center w-[90%] p-3 py-2">
           <div className="w-[fit] h-fit">

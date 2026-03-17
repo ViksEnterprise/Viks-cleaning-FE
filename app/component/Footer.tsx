@@ -46,10 +46,10 @@ export default function Footer() {
                   <a href="/services">Services</a>
                 </li>
                 <li className="font-[200] text-[0.90em]">
-                  <a href="/#testimonial">Testimonials</a>
+                  <a href="/#terms-and-privacy">Terms & Privacy</a>
                 </li>
                 <li className="font-[200] text-[0.90em]">
-                  <a href="/#contact">Contact</a>
+                  <a href="/contact">Contact</a>
                 </li>
               </ul>
             </div>

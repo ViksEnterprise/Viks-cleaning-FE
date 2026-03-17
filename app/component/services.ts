@@ -1,12 +1,12 @@
 const SERVICES = [
   {
     title: "Residential cleaning",
-    img: "/img/resident.jpg",
+    img: "/img/resident.webp",
     des: "We provide thorough home cleaning tailored to your lifestyle and needs. From routine maintainance to detailed surface care, our residential service keeps your living space fresh, organized, and comfortable.",
   },
   {
     title: "Commercial cleaning",
-    img: "/img/commercial.jpg",
+    img: "/img/commercial.webp",
     des: "Our commercial cleaning services ensures offices, retail spaces, and business environments remain spotless, hygienic, and welcoming. We focus on maitaining a clean and professional atmosphere that supports productivity and leaves a positive impression on clients and staff",
   },
   {
