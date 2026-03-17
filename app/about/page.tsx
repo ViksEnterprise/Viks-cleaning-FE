@@ -5,6 +5,7 @@ import { VALUE } from "../component/values";
 import { useEffect, useState } from "react";
 import Testimonial from "../component/Review";
 import { motion } from "motion/react";
+import Footer from "../component/Footer";
 
 export default function About() {
   const [mobile, setMobile] = useState(
@@ -240,6 +241,7 @@ export default function About() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

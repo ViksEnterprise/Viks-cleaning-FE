@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Testimonial from "../component/Review";
 import { motion } from "motion/react";
 import Services from "../component/Service";
+import Footer from "../component/Footer";
 
 export default function LandingPage() {
   const [mobile, setMobile] = useState(
@@ -331,6 +332,7 @@ export default function LandingPage() {
       </div>
       <hr className="text-[#BDBDBD]" />
       <Testimonial />
+      <Footer />
     </div>
   );
 }

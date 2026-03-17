@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import WhyChooseUs from "../component/Reason";
 import Services from "../component/Service";
+import Footer from "../component/Footer";
 
 export default function OurServices() {
   return (
@@ -46,6 +47,7 @@ export default function OurServices() {
         <hr className="text-[#BDBDBD]" />
         <WhyChooseUs />
       </div>
+      <Footer />
     </>
   );
 }

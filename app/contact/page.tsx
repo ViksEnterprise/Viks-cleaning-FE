@@ -4,6 +4,7 @@ import { BiGlobe, BiPhone } from "react-icons/bi";
 import { CgMail } from "react-icons/cg";
 import { SlLocationPin } from "react-icons/sl";
 import { motion } from "motion/react";
+import Footer from "../component/Footer";
 
 export default function Contact() {
   return (
@@ -102,6 +103,7 @@ export default function Contact() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
