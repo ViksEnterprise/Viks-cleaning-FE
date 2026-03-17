@@ -37,7 +37,7 @@ export default function NavBar() {
   if (!isMounted) return null;
 
   return (
-    <header className="fixed top-0 w-full z-3 md:px-7 px-3 flex items-center justify-center py-2 h-24 bg-white">
+    <header className="fixed top-0 w-full z-3 md:px-7 px-3 flex items-center justify-center py-2 h-24 bg-white shadow shadow-md">
       {!mobile ? (
         <div className="flex justify-between items-center w-[90%] p-3 py-2">
           <div className="w-[fit] h-fit">
