@@ -42,7 +42,7 @@ export default function NavBar() {
         <div className="flex justify-between items-center w-[90%] p-3 py-2">
           <div className="w-[fit] h-fit">
             <Image
-              src="/img/logo-no-bg.png"
+              src="/img/logo-no-bg.jpeg"
               className="h-20"
               alt=""
               height={100}
@@ -75,7 +75,7 @@ export default function NavBar() {
         <div className="flex justify-between items-center w-full p-2 py-2">
           <div className="w-[fit]">
             <Image
-              src="/img/logo-no-bg.png"
+              src="/img/logo-no-bg.jpeg"
               className="h-20"
               alt=""
               height={100}
@@ -93,7 +93,7 @@ export default function NavBar() {
             </div>
             {openNav ? (
               <nav className="absolute start-0 bottom-0 top-0 bg-gradient-to-r from-[#171717]/50 to-[#0a0a0a]/50 w-full h-svh flex flex-col items-end justify-end">
-                <ul className="flex flex-col items-start gap-5 text-black w-[70%] bg-[#fff] h-[inherit] p-3">
+                <ul className="flex flex-col items-start gap-5 text-black w-[85%] bg-[#fff] h-[inherit] p-3">
                   <div className="flex w-full items-end justify-end">
                     <FaTimes
                       className="cursor-pointer"

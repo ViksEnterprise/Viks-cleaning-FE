@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { SERVICES } from "../component/services";
 import { useEffect, useState } from "react";
 import Testimonial from "../component/Review";
 import { motion } from "motion/react";
+import Services from "../component/Service";
 
 export default function LandingPage() {
   const [mobile, setMobile] = useState(
@@ -238,58 +238,7 @@ export default function LandingPage() {
               </a>
             )}
           </div>
-          {!mobile ? (
-            <div className="grid grid-cols-3 gap-4 items-end mt-5">
-              {SERVICES.slice(0, 3).map((val, i) => (
-                <motion.div
-                  whileInView={"visible"}
-                  transition={{ duration: 1.2 }}
-                  initial="hidden"
-                  variants={{
-                    hidden: { y: 70, opacity: 0 },
-                    visible: { y: 0, opacity: 1 },
-                  }}
-                  className="shadow-[#00000040] h-92 shadow border-[#BDBDBD] border p-5 rounded-lg flex items-start justify-between flex-col gap-5 cursor-pointer"
-                  key={i}
-                >
-                  <span className="text-2xl">{val.title}</span>
-                  <Image
-                    className="h-56 w-full rounded-lg"
-                    src={val.img}
-                    alt=""
-                    width={500}
-                    height={400}
-                  />
-                </motion.div>
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols gap-4 items-end mt-5">
-              {SERVICES.slice(0, 2).map((val, i) => (
-                <motion.div
-                  whileInView={"visible"}
-                  transition={{ duration: 1.2 }}
-                  initial="hidden"
-                  variants={{
-                    hidden: { y: 70, opacity: 0 },
-                    visible: { y: 0, opacity: 1 },
-                  }}
-                  className="shadow-[#00000040] h-86 shadow border-[#BDBDBD] border p-5 rounded-lg flex items-start justify-between flex-col gap-5 cursor-pointer"
-                  key={i}
-                >
-                  <span className="text-xl">{val.title}</span>
-                  <Image
-                    className="h-56 w-full rounded-lg"
-                    src={val.img}
-                    alt=""
-                    width={500}
-                    height={400}
-                  />
-                </motion.div>
-              ))}
-            </div>
-          )}
-
+          <Services home={true} />
           {mobile && (
             <div className="w-full flex items-center justify-center">
               <a
@@ -306,20 +255,47 @@ export default function LandingPage() {
       <div className="lg:h-screen sm:h-130 h-fit md:py-5 px-3 flex flex-col gap-4 items-center py-0 mb-5 relative">
         <div className="grid gap-6 items-start p-5 py-7 xl:w-6xl w-full bg-[#00000033] h-full rounded-2xl">
           <div className="flex justify-between items-center w-full mt-5">
-            <div className="grid gap-5 itms-start xl:w-lg lg:w-sm sm:w-2xs w-full">
-              <h2 className="md:text-2xl text-xl font-medium">
+            <div className="grid gap-5 itms-start xl:w-lg lg:w-sm sm:w-2xs w-full overflow-hidden">
+              <motion.h2
+                whileInView={"visible"}
+                transition={{ duration: 1.2 }}
+                initial="hidden"
+                variants={{
+                  hidden: { x: -120, opacity: 0 },
+                  visible: { x: 0, opacity: 1 },
+                }}
+                className="md:text-2xl text-xl font-medium"
+              >
                 Our Commitment to Excellence Experiences
-              </h2>
-              <span className="m-0 text-sm leading-[155%]">
+              </motion.h2>
+              <motion.span
+                whileInView={"visible"}
+                transition={{ duration: 1.2 }}
+                initial="hidden"
+                variants={{
+                  hidden: { scale: 0, opacity: 0 },
+                  visible: { scale: 1, opacity: 1 },
+                }}
+                className="m-0 text-sm leading-[155%]"
+              >
                 At Viks Cleaning Services, we’re not just about cleaning homes,
                 we’re about making a difference in the lives of our clients and
                 our community. Explore our core mission and vision that drives
                 us every day. We offer customized cleaning packages and use
                 eco-friendly cleaning products.
-              </span>
-              <a className="bg-[#0C06AC] text-xs h-10 flex items-center justify-center w-38 cursor-pointer rounded-lg text-white p-3 px-4 m-0">
+              </motion.span>
+              <motion.a
+                whileInView={"visible"}
+                transition={{ duration: 1.2 }}
+                initial="hidden"
+                variants={{
+                  hidden: { x: -120, opacity: 0 },
+                  visible: { x: 0, opacity: 1 },
+                }}
+                className="bg-[#0C06AC] text-xs h-10 flex items-center justify-center w-38 cursor-pointer rounded-lg text-white p-3 px-4 m-0"
+              >
                 Request service
-              </a>
+              </motion.a>
             </div>
             {!mobile && (
               <div className="flex xl:w-xl sm:w-sm flex-col items-start relative">

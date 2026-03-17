@@ -4,6 +4,7 @@ import Image from "next/image";
 import { VALUE } from "../component/values";
 import { useEffect, useState } from "react";
 import Testimonial from "../component/Review";
+import { motion } from "motion/react";
 
 export default function About() {
   const [mobile, setMobile] = useState(
@@ -30,21 +31,45 @@ export default function About() {
       <div className="flex w-full items-center justify-center lg:h-screen h-full py-5 mt-5">
         {!mobile ? (
           <div className="flex w-6xl items-center justify-between p-5 mt-7 pt-5">
-            <div className="relative w-fit">
-              <Image
-                src="/img/about.jpg"
-                alt=""
-                className="h-120 w-lg rounded-br-[5em]"
-                height={500}
-                width={500}
-              />
-              <Image
-                src="/img/viks-office.jpg"
-                alt=""
-                className="h-62 w-sm absolute -bottom-[4em] rounded-br-[3em]"
-                height={500}
-                width={500}
-              />
+            <div className="relative w-fit h-full">
+              <div className="overflow-hidden">
+                <motion.div
+                  whileInView={"visible"}
+                  transition={{ duration: 1.2 }}
+                  initial="hidden"
+                  variants={{
+                    hidden: { x: 120, opacity: 0 },
+                    visible: { x: 0, opacity: 1 },
+                  }}
+                >
+                  <Image
+                    src="/img/about.jpg"
+                    alt=""
+                    className="h-120 w-lg rounded-br-[5em]"
+                    height={500}
+                    width={500}
+                  />
+                </motion.div>
+              </div>
+              <div className="overflow-hidden h-fit absolute -bottom-[4em]">
+                <motion.div
+                  whileInView={"visible"}
+                  transition={{ duration: 1.2 }}
+                  initial="hidden"
+                  variants={{
+                    hidden: { x: -120 },
+                    visible: { x: 0 },
+                  }}
+                >
+                  <Image
+                    src="/img/viks-office.jpg"
+                    alt=""
+                    className="h-62 w-sm rounded-br-[3em]"
+                    height={500}
+                    width={500}
+                  />
+                </motion.div>
+              </div>
             </div>
             <div className="grid gap-5 items-start w-xl">
               <h2 className="text-center text-[#00008B] text-4xl font-semibold uppercase">
@@ -82,14 +107,24 @@ export default function About() {
           </div>
         ) : (
           <div className="grid w-full gap-4 p-5 mt-8 pt-7">
-            <div className="grid gap-4">
-              <Image
-                src="/img/about.jpg"
-                alt=""
-                className="h-84 w-full rounded-xl"
-                height={500}
-                width={500}
-              />
+            <div className="grid gap-4 overflow-hidden">
+              <motion.div
+                whileInView={"visible"}
+                transition={{ duration: 1.2 }}
+                initial="hidden"
+                variants={{
+                  hidden: { x: -120, opacity: 0 },
+                  visible: { x: 0, opacity: 1 },
+                }}
+              >
+                <Image
+                  src="/img/about.jpg"
+                  alt=""
+                  className="h-84 w-full rounded-xl"
+                  height={500}
+                  width={500}
+                />
+              </motion.div>
               <span className="text-base font-semibold">
                 Let's Us Take Care of Your Cleaning Needs
               </span>
@@ -103,17 +138,25 @@ export default function About() {
                 consistency at their core.
               </span>
             </div>
-            <div className="grid gap-5 w-full">
-              <Image
-                src="/img/about-2.jpeg"
-                alt=""
-                className="h-84 w-full rounded-xl"
-                height={500}
-                width={500}
-              />
-              <h2 className="text-2xl font-semibold uppercase">
-                Who we are
-              </h2>
+            <div className="grid gap-5 w-full overflow-hidden">
+              <motion.div
+                whileInView={"visible"}
+                transition={{ duration: 1.2 }}
+                initial="hidden"
+                variants={{
+                  hidden: { x: 120, opacity: 0 },
+                  visible: { x: 0, opacity: 1 },
+                }}
+              >
+                <Image
+                  src="/img/about-2.jpeg"
+                  alt=""
+                  className="h-84 w-full rounded-xl"
+                  height={500}
+                  width={500}
+                />
+              </motion.div>
+              <h2 className="text-2xl font-semibold uppercase">Who we are</h2>
               <span className="text-sm w-full">
                 At Viks Cleaning, we take pride in delivering premium cleaning
                 services that consistently exceed expectations. With a deep
@@ -125,18 +168,33 @@ export default function About() {
           </div>
         )}
       </div>
-      <hr className="text-[#BDBDBD]" />
-      <div className="flex w-full items-center justify-center lg:h-screen h-full bg-[#4942ea] text-white">
+      <div className="flex w-full items-center justify-center lg:h-screen h-full bg-[#4942ea] text-white mt-3">
         <div className="flex md:w-6xl w-full p-5">
-          <div className="grid justify-between space-y-8 h-full items-start w-full">
-            <h2 className="text-center text-3xl font-semibold uppercase md:mb-5 mb-2">
+          <div className="grid justify-between space-y-8 h-full items-start w-full overflow-hidden">
+            <motion.h2
+              whileInView={"visible"}
+              transition={{ duration: 1.2 }}
+              initial="hidden"
+              variants={{
+                hidden: { x: -120, opacity: 0 },
+                visible: { x: 0, opacity: 1 },
+              }}
+              className="text-center text-3xl font-semibold uppercase md:mb-5 mb-2"
+            >
               Our values
-            </h2>
-            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols md:mt-5 mt-0 pt-5 gap-5">
+            </motion.h2>
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols md:mt-5 mt-0 pt-5 gap-5 overflow-hidden">
               {VALUE.map((val, i) => {
                 const Icon = val.icon;
                 return (
-                  <div
+                  <motion.div
+                    whileInView={"visible"}
+                    transition={{ duration: 1.2 }}
+                    initial="hidden"
+                    variants={{
+                      hidden: { y: 90, opacity: 0 },
+                      visible: { y: 0, opacity: 1 },
+                    }}
                     className="h-54 rounded-lg flex flex-col gap-4 border-white border px-5 justify-center md:mt-5 mt-3"
                     key={i}
                   >
@@ -145,7 +203,7 @@ export default function About() {
                     </div>
                     <h6 className="text-3xl">{val.name}</h6>
                     <span className="text-sm">{val.text}</span>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
@@ -157,10 +215,19 @@ export default function About() {
       <hr className="text-[#BDBDBD]" />
       <div className="flex w-full items-center justify-center h-72">
         <div className="flex md:w-6xl w-full items-center justify-between p-5">
-          <div className="flex flex-col gap-6 items-center w-full text-center">
-            <h2 className="text-center text-[#00008B] text-4xl font-semibold">
+          <div className="flex flex-col gap-6 items-center w-full text-center overflow-hidden">
+            <motion.h2
+              whileInView={"visible"}
+              transition={{ duration: 1.2 }}
+              initial="hidden"
+              variants={{
+                hidden: { x: -120, opacity: 0 },
+                visible: { x: 0, opacity: 1 },
+              }}
+              className="text-center text-[#00008B] text-4xl font-semibold"
+            >
               If you have any questions
-            </h2>
+            </motion.h2>
             <span className="text-base font-medium">
               Feel free to contact us by clicking on the button
             </span>
