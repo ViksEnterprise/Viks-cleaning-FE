@@ -16,7 +16,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ isOpen, close, id }) => {
     return;
   }
   return (
-    <div className="fixed z-6 bg-black/45 w-full top-0 h-full bottom-0 flex items-center justify-center p-3">
+    <div className="fixed z-6 bg-black/45 w-full start-0 top-0 h-full bottom-0 flex items-center justify-center p-3">
       <div className="w-2xl bg-white rounded-2xl h-fit p-4 flex flex-col gap-4 relative">
         <FaX
           onClick={close}
