@@ -121,7 +121,7 @@ export default function Contact() {
         <div className="flex items-center justify-center w-full py-5">
           <div className="p-5 w-6xl flex md:flex-row flex-col-reverse items-center gap-4 sm:h-160 h-fit justify-between">
             <form
-              method="post"
+              onSubmit={handleSubmit}
               className="md:w-lg w-full p-4 rounded-lg grid items-start gap-3 shadow border-[#E7E7E7] border shadow-[#00000040]"
             >
               <div className="flex flex-col gap-2 items-start">

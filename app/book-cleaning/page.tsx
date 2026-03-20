@@ -9,7 +9,11 @@ export default function BookService() {
         </div>
       </div>
       <div className="flex p-5 text-center items-center justify-center">
-        <div className="flex flex-col text-center items-center justify-center bg-white shadow shadow-lg h-96 border border-gray-100 rounded-xl w-xl"></div>
+        <div className="flex flex-col text-center items-center justify-center bg-white shadow shadow-lg h-96 border border-gray-100 rounded-xl w-2xl">
+          <form className="w-full h-full">
+            <div className="bg-slate-100 w-full"></div>
+          </form>
+        </div>
       </div>
       <Footer />
     </div>
