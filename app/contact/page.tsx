@@ -133,7 +133,7 @@ export default function Contact() {
                   type="text"
                   value={form.full_name}
                   onChange={(e) => handleChange(e)}
-                  className="h-11 rounded-lg w-full border-[#000000] border"
+                  className="h-11 rounded-lg w-full border-[#000000] border p-2 outline-transparent"
                 />
                 <p className="text-xs text-red-500">{error.full_name}</p>
               </div>
@@ -146,7 +146,7 @@ export default function Contact() {
                   type="email"
                   value={form.email}
                   onChange={(e) => handleChange(e)}
-                  className="h-11 rounded-lg w-full border-[#000000] border"
+                  className="h-11 rounded-lg w-full border-[#000000] border p-2 outline-transparent"
                 />
                 <p className="text-xs text-red-500">{error.email}</p>
               </div>
