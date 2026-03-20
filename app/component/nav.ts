@@ -17,7 +17,7 @@ const NAVBAROUTE = [
   },
   {
     path: "Book Now",
-    url: "/#ready",
+    url: "/book-cleaning",
   },
 ];
 
