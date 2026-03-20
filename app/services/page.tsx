@@ -35,7 +35,7 @@ export default function OurServices() {
               <Services home={false} />
               <div className="w-full flex items-center justify-center">
                 <a
-                  href="/"
+                  href="/book-cleaning"
                   className="bg-[#0C06AC] text-sm h-11 flex items-center justify-center w-54 cursor-pointer rounded-lg text-white p-3 px-4 m-0"
                 >
                   Book our services now

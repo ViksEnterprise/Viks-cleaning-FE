@@ -72,7 +72,10 @@ export default function LandingPage() {
               }}
               className="md:w-fit w-full flex items-center md:items-start justify-center md:justify-center"
             >
-              <a className="bg-[#0C06AC] font-[500] text-sm h-10 flex items-center justify-center w-38 cursor-pointer rounded-lg text-white p-3 px-4 m-0">
+              <a
+                href="/book-cleaning"
+                className="bg-[#0C06AC] font-[500] text-sm h-10 flex items-center justify-center w-38 cursor-pointer rounded-lg text-white p-3 px-4 m-0"
+              >
                 Book our service
               </a>
             </motion.div>
@@ -293,6 +296,7 @@ export default function LandingPage() {
                   hidden: { x: -120, opacity: 0 },
                   visible: { x: 0, opacity: 1 },
                 }}
+                href="/book-cleaning"
                 className="bg-[#0C06AC] text-xs h-10 flex items-center justify-center w-38 cursor-pointer rounded-lg text-white p-3 px-4 m-0"
               >
                 Request service
