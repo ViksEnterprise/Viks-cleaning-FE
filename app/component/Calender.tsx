@@ -7,7 +7,7 @@ interface DatePickerProps {
   onChange: () => void
 }
 
-const DatePicker: React.FC<DatePickerProps> = () => ({ value, onChange }) {
+const DatePicker: React.FC<DatePickerProps> = ({ value, onChange }) => {
   const today = new Date();
 
   const [showCalendar, setShowCalendar] = useState(false);
