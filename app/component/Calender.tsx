@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 interface DatePickerProps {
-  value: String,
+  value: any,
   onChange: any
 }
 
@@ -13,7 +13,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange }) => {
   const [showCalendar, setShowCalendar] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
-  const [selectedDate, setSelectedDate] = useState<Date | ''>('');
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const ref = useRef(null);
 
