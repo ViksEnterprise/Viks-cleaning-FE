@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 interface DatePickerProps {
-  value: any,
+  value: String,
   onChange: any
 }
 
