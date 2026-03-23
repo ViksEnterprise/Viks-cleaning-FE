@@ -1,8 +1,13 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-export default function DatePicker({ value, onChange }) {
+interface DatePickerProps {
+  value: String,
+  onChange: () => void
+}
+
+const DatePicker: React.FC<DatePickerProps> = () => ({ value, onChange }) {
   const today = new Date();
 
   const [showCalendar, setShowCalendar] = useState(false);
@@ -160,3 +165,5 @@ export default function DatePicker({ value, onChange }) {
     </div>
   );
 }
+
+export default DatePicker
