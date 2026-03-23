@@ -6,7 +6,7 @@ import Footer from "../component/Footer";
 
 export default function BookService() {
   const [formData, setFormData] = useState({
-    data: "",
+    date: "",
   });
   const [currentStep, setCurrentStep] = useState(1);
   const steps = [
