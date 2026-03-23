@@ -13,7 +13,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange }) => {
   const [showCalendar, setShowCalendar] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
-  const [selectedDate, setSelectedDate] = useState<'' | null>('');
+  const [selectedDate, setSelectedDate] = useState<Date | ''>('');
 
   const ref = useRef(null);
 
