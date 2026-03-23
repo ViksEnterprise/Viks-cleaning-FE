@@ -150,7 +150,15 @@ export default function BookService() {
             ) : (
               currentStep == 4 && (
                 <div className="grid items-start space-y-5">
-                  <DatePicker value={formData.data} onChange={setFormData} />
+                  <DatePicker
+  value={formData.date}
+  onChange={(date: Date) =>
+    setFormData((prev) => ({
+      ...prev,
+      date: date.toISOString(),
+    }))
+  }
+/>
                   <div className="flex flex-col gap-1 px-4">
                     <label htmlFor="service">Select Time</label>
                     <select className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal">
