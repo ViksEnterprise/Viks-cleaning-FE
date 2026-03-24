@@ -42,7 +42,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange }) => {
   // Close when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target)) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
         setShowCalendar(false);
       }
     };
