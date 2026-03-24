@@ -85,12 +85,12 @@ export default function BookService() {
   };
 
   useEffect(() => {
-    if (currentStep === 4) {
+    if (currentStep >= 4) {
       setCount(2);
     } else {
       setCount(0);
     }
-  }, [currentStep == 3]);
+  }, [currentStep >= 4]);
 
   useEffect(() => {
     setTotal(price * count);
