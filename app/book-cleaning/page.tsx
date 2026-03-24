@@ -155,7 +155,7 @@ export default function BookService() {
   onChange={(date: string) =>
     setFormData((prev) => ({
       ...prev,
-      date: date.toISOString(),
+      date,
     }))
   }
 />
