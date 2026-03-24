@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
-import { NAVBAROUTE } from "./nav";
+import { NAVBAROUTE } from "./ts/nav";
 
 export default function NavBar() {
   const [mobile, setMobile] = useState(

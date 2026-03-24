@@ -1,31 +1,111 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "../component/Calender";
 import Footer from "../component/Footer";
+import { BiMinus, BiPlus } from "react-icons/bi";
+import { FormData, FormErrors } from "../data/form";
+import { usePostcodeVerification } from "../composable/map&code_verification";
+import { CLEANING_TYPE, PETS } from "../component/ts/formBooking";
 
 export default function BookService() {
-  const [formData, setFormData] = useState({
-    data: "",
+  const [formData, setFormData] = useState<FormData>({
+    postcode: "",
+    title: "",
+    full_name: "",
+    email: "",
+    phone_number: "",
+    address: "",
+    cleaning_type: "",
+    pet: "",
+    service_frequency: "",
+    prefer_day: "",
+    parking: "",
+    ironing: "",
+    access: "",
+    hours: 0,
+    date: "",
+    time: "",
+    notes: "",
   });
+  const [errors, setErrors] = useState<FormErrors>({});
   const [currentStep, setCurrentStep] = useState(1);
+  const [count, setCount] = useState<number>(0);
+  const [total, setTotal] = useState<number>(0);
+  const price = 25;
+
+  const { verifyPostcode, result, error, isLoading } =
+    usePostcodeVerification();
+
   const steps = [
-    { id: 1, title: "Postcode Address and Email" },
-    { id: 2, title: "Service Type" },
-    { id: 3, title: "" },
-    { id: 4, title: "Calender and time" },
+    { id: 1, title: "Cleaning Location and Email" },
+    { id: 2, title: "Service Details" },
+    { id: 3, title: "More Information" },
+    { id: 4, title: "Cleaning hours" },
+    { id: 5, title: "Calender and time" },
   ];
+
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+
+    setErrors((prev: any) => ({ ...prev, [name]: "" }));
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const previouStep = () => {
     if (currentStep > 1) {
       setCurrentStep((prev) => prev - 1);
     }
   };
+
   const nextStep = () => {
     if (currentStep < steps.length) {
       setCurrentStep((prev) => prev + 1);
     }
   };
+
+  const decreaseHours = () => {
+    if (count > 2) {
+      setCount((prev) => prev - 1);
+    } else {
+      return;
+    }
+  };
+
+  const increaseHours = () => {
+    if (count < 30) {
+      setCount((prev) => prev + 1);
+    } else {
+      return;
+    }
+  };
+
+  useEffect(() => {
+    if (currentStep === 4) {
+      setCount(2);
+    } else {
+      setCount(0);
+    }
+  }, [currentStep == 3]);
+
+  useEffect(() => {
+    setTotal(price * count);
+    formData.hours = count;
+  }, [count]);
+
+  useEffect(() => {
+    if (!formData.postcode) return;
+
+    const timeout = setTimeout(() => {
+      verifyPostcode(formData.postcode.trim().toUpperCase());
+    }, 500);
+
+    return () => clearTimeout(timeout);
+  }, [formData.postcode]);
 
   return (
     <div className="h-full bg-slate-100">
@@ -34,17 +114,17 @@ export default function BookService() {
           <span className="p-0 mt-0">Book our cleaning service</span>
         </div>
       </div>
-      <div className="flex p-5 items-center justify-center w-full gap-5">
+      <div className="flex md:flex-row flex-col p-5 items-start justify-center w-full gap-5">
         <div className="flex flex-col items-center justify-center bg-white shadow shadow-lg h-fit border border-gray-100 rounded-xl xl:w-2xl lg:w-xl md:w-lg sm:w-sm w-full">
           <div className={`w-full h-fit grid-cols-6 grid gap-4 p-3`}>
             {steps.map((i) => (
               <div
                 className={
-                  i.id != currentStep
-                    ? "h-2 rounded-sm bg-slate-200 w-full"
-                    : i.id < currentStep
-                      ? "h-2 rounded-sm bg-[#00C950] w-full"
-                      : "h-2 rounded-sm bg-[#00008B] w-full"
+                  i.id < currentStep
+                    ? "h-2 rounded-sm bg-[#00C950] w-full"
+                    : i.id === currentStep
+                      ? "h-2 rounded-sm bg-[#00008B] w-full"
+                      : "h-2 rounded-sm bg-slate-200 w-full"
                 }
                 key={i.id}
               ></div>
@@ -54,19 +134,26 @@ export default function BookService() {
             <span className="text-xl text-center text-black">
               {steps[currentStep - 1].title}
             </span>
-            {currentStep == 3 ? (
+            {currentStep == 1 ? (
               <div className="grid items-start space-y-5">
                 <div className="flex flex-col gap-1">
                   <label htmlFor="post_code">Post code</label>
                   <input
                     type="text"
                     className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
+                    value={formData.postcode}
+                    name="postcode"
+                    onChange={(e) => handleChange(e)}
                   />
+                  <span className="text-xs">{error}</span>
                 </div>
                 <div className="flex flex-col gap-1">
                   <label htmlFor="email">Email</label>
                   <input
                     type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={(e) => handleChange(e)}
                     className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
                   />
                 </div>
@@ -75,37 +162,65 @@ export default function BookService() {
               <div className="grid items-start space-y-5">
                 <div className="flex flex-col gap-1">
                   <label htmlFor="service">Cleaning type</label>
-                  <select className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal">
-                    <option value="">Choose</option>
-                    <option value="">Residential cleaning</option>
+                  <select
+                    name="cleaning_type"
+                    value={formData.cleaning_type}
+                    onChange={(e) => handleChange(e)}
+                    className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
+                  >
+                    <option value="choose">Choose</option>
+                    {CLEANING_TYPE.map((val, i) => (
+                      <option value={val} key={i}>
+                        {val}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div className="flex flex-col gap-1">
                   <label htmlFor="pets">Do you have pet?</label>
                   <div className="flex gap-5 items-center">
-                    <div className="flex gap-1 items-center text-black">
-                      <input type="radio" name="" /> Yes
-                    </div>
-                    <div className="flex gap-1 items-center text-black">
-                      <input type="radio" name="" /> No
-                    </div>
+                    {PETS.map((val, i) => (
+                      <div
+                        className="flex gap-1 items-center text-black capitalize"
+                        key={i}
+                      >
+                        <input
+                          value={val}
+                          checked={formData.pet === val}
+                          onChange={(e) => handleChange(e)}
+                          type="radio"
+                          name="pet"
+                        />{" "}
+                        {val}
+                      </div>
+                    ))}
                   </div>
                 </div>
                 <div className="flex flex-col gap-1">
                   <label htmlFor="service">
                     How often do you need our service?
                   </label>
-                  <select className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal">
+                  <select
+                    name="service_frequency"
+                    value={formData.service_frequency}
+                    onChange={(e) => handleChange(e)}
+                    className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
+                  >
                     <option value="">Choose</option>
                     <option value="">Residential cleaning</option>
                   </select>
                 </div>
               </div>
-            ) : currentStep == 1 ? (
+            ) : currentStep == 3 ? (
               <div className="grid items-start space-y-5">
                 <div className="flex flex-col gap-1">
                   <label htmlFor="service_day">Preferred cleaning day</label>
-                  <select className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal">
+                  <select
+                    name="prefer_day"
+                    value={formData.prefer_day}
+                    onChange={(e) => handleChange(e)}
+                    className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
+                  >
                     <option value="">Choose</option>
                     <option value="">Residential cleaning</option>
                   </select>
@@ -147,26 +262,61 @@ export default function BookService() {
                   </div>
                 </div>
               </div>
-            ) : (
-              currentStep == 4 && (
-                <div className="grid items-start space-y-5">
-                  <DatePicker value={formData.data} onChange={setFormData} />
-                  <div className="flex flex-col gap-1 px-4">
-                    <label htmlFor="service">Select Time</label>
-                    <select className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal">
-                      <option value="">Choose</option>
-                      <option value="">Residential cleaning</option>
-                    </select>
-                  </div>
-                  <div className="flex flex-col gap-1 px-4">
-                    <label htmlFor="parking">Additional notes</label>
-                    <textarea
-                      className="resize-none h-32 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
-                      name=""
-                    ></textarea>
+            ) : currentStep == 4 ? (
+              <div className="grid items-start space-y-5">
+                <div className="flex justify-between items-center gap-1 px-3 text-black font-normal py-2">
+                  <label htmlFor="service">Number of hours</label>
+                  <div className="flex gap-2 items-center text-xs font-bold">
+                    <button
+                      type="button"
+                      disabled={count == 2}
+                      onClick={() => decreaseHours()}
+                      className="p-1 bg-[#FF0000] text-white rounded-sm disabled:bg-blue-100 disabled:cursor-not-allowed cursor-pointer"
+                    >
+                      <BiMinus size={13} />
+                    </button>
+                    <span>{count}</span>
+                    <button
+                      type="button"
+                      onClick={() => increaseHours()}
+                      className="p-1 bg-[#00008B] text-white rounded-sm cursor-pointer"
+                    >
+                      <BiPlus size={13} />
+                    </button>
                   </div>
                 </div>
-              )
+              </div>
+            ) : (
+              <div className="grid items-start space-y-5">
+                <DatePicker
+                  value={formData.date}
+                  onChange={(date: string) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      date,
+                    }))
+                  }
+                />
+                <div className="flex flex-col gap-1 px-4">
+                  <label htmlFor="service">Select Time</label>
+                  <input
+                    className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
+                    type="time"
+                    name="time"
+                    value={formData.time}
+                    onChange={(e) => handleChange(e)}
+                  />
+                </div>
+                <div className="flex flex-col gap-1 px-4">
+                  <label htmlFor="parking">Additional notes</label>
+                  <textarea
+                    className="resize-none h-32 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
+                    name="notes"
+                    value={formData.notes}
+                    onChange={(e) => handleChange(e)}
+                  ></textarea>
+                </div>
+              </div>
             )}
             <div className="w-full flex md:flex-row flex-col gap-3 justify-between md:items-center items-start">
               <button
@@ -187,32 +337,125 @@ export default function BookService() {
             </div>
           </form>
         </div>
-        <div className="w-lg h-fit p-3 bg-white shadow shadow-lg border border-gray-100 rounded-xl w-sm grid items-start space-y-4">
-          <h2 className="text-xl uppercase font-bold text-[#00008B]">
-            Booking summary
-          </h2>
-          <div className="flex flex-col gap-2">
-            <span className="text-sm capitalize font-bold">
-              Post code: <span className="text-xs uppercase font-normal">jruru</span>
-            </span>
-            <span className="text-sm capitalize font-bold">
-              Address: <span className="text-xs font-normal">jruru</span>
-            </span>
-            <span className="text-sm capitalize font-bold">
-              Email: <span className="text-xs font-normal">jruru</span>
-            </span>
-            <span className="text-sm capitalize font-bold">
-              Cleaning type: <span className="text-xs font-normal">jruru</span>
-            </span>
-            <span className="text-sm capitalize font-bold">
-              Pet information: <span className="text-xs font-normal">jruru</span>
-            </span>
-            <span className="text-sm capitalize font-bold">
-              Cleaning frequency: <span className="text-xs font-normal">jruru</span>
-            </span>
-            <span className="text-sm capitalize font-bold">
-              Preferred cleaning day: <span className="text-xs font-normal">jruru</span>
-            </span>
+        <div className="xl:w-lg lg:w-xs md:w-2xs w-full h-fit grid items-start space-y-5">
+          <div className="w-full h-fit p-3 bg-white shadow shadow-lg border border-gray-100 rounded-xl">
+            <div className="flex items-start flex-col gap-4 justify-between">
+              <h5 className="text-lg uppercase font-bold text-[#00008B]">
+                price
+              </h5>
+              <span className="text-base capitalize font-bold">
+                £ {price} per hour
+              </span>
+            </div>
+          </div>
+          <div className="w-full h-fit p-3 bg-white shadow shadow-lg border border-gray-100 rounded-xl grid items-start space-y-5">
+            <h2 className="text-xl uppercase font-bold text-[#00008B]">
+              Booking summary
+            </h2>
+            <div className="flex flex-col gap-5">
+              {formData.postcode && (
+                <span className="text-sm capitalize font-bold">
+                  Post code:{" "}
+                  <span className="text-xs uppercase font-normal">
+                    {formData.postcode}
+                  </span>
+                </span>
+              )}
+              {result && (
+                <span className="text-sm capitalize font-bold">
+                  Address:{" "}
+                  <span className="text-xs font-normal">
+                    {result.admin_district}, {result.country}
+                  </span>
+                </span>
+              )}
+              {formData.email && (
+                <span className="text-sm capitalize font-bold">
+                  Email:{" "}
+                  <span className="text-xs font-normal normal-case">
+                    {formData.email}
+                  </span>
+                </span>
+              )}
+              {formData.cleaning_type && (
+                <span className="text-sm font-bold">
+                  Cleaning Type:{" "}
+                  <span className="text-xs font-normal normal-case">
+                    {formData.cleaning_type}
+                  </span>
+                </span>
+              )}
+              {formData.pet && (
+                <span className="text-sm font-bold">
+                  Pet Information:{" "}
+                  <span className="text-xs font-normal normal-case">
+                    {formData.pet == "yes"
+                      ? "I have pets"
+                      : "I don't have pets"}
+                  </span>
+                </span>
+              )}
+              {formData.service_frequency && (
+                <span className="text-sm capitalize font-bold">
+                  Cleaning frequency:{" "}
+                  <span className="text-xs font-normal">
+                    {formData.service_frequency}
+                  </span>
+                </span>
+              )}
+              {formData.prefer_day && (
+                <span className="text-sm capitalize font-bold">
+                  Preferred cleaning day:{" "}
+                  <span className="text-xs font-normal">
+                    {formData.prefer_day}
+                  </span>
+                </span>
+              )}
+              {formData.parking && (
+                <span className="text-sm capitalize font-bold">
+                  Parking:{" "}
+                  <span className="text-xs font-normal">
+                    {formData.parking == "yes"
+                      ? "Parking is available"
+                      : formData.parking == "no"
+                        ? "Parking is not available"
+                        : formData.parking}
+                  </span>
+                </span>
+              )}
+              {formData.ironing && (
+                <span className="text-sm capitalize font-bold">
+                  Ironing:{" "}
+                  <span className="text-xs font-normal">
+                    {formData.ironing == "yes"
+                      ? "Ironing is neede as well"
+                      : "I do not want ironing"}
+                  </span>
+                </span>
+              )}
+              {formData.access && (
+                <span className="text-sm capitalize font-bold">
+                  Access:{" "}
+                  <span className="text-xs font-normal">{formData.access}</span>
+                </span>
+              )}
+              {formData.hours !== 0 && (
+                <span className="text-sm capitalize font-bold">
+                  Hours:{" "}
+                  <span className="text-xs font-normal">
+                    {formData.hours} hours
+                  </span>
+                </span>
+              )}
+            </div>
+            <div className="flex items-center justify-between">
+              <h5 className="text-base uppercase font-bold text-[#00008B]">
+                Total price
+              </h5>
+              <span className="text-base uppercase font-bold text-[#00008B]">
+                £ {total}
+              </span>
+            </div>
           </div>
         </div>
       </div>

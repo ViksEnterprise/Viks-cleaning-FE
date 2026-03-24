@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import localFont from "next/font/local";
 import Image from "next/image";
-import { TESTIMONIAL } from "./test";
+import { TESTIMONIAL } from "./ts/test";
 import { motion } from "motion/react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import ServiceDetail from "./ServiceDetail";
 import React, { useEffect, useState } from "react";
-import { SERVICES } from "./services";
+import { SERVICES } from "./ts/services";
 
 interface SERVICEPROPS {
   home: Boolean;

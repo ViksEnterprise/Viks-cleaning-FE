@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { FaX } from "react-icons/fa6";
-import { SERVICES } from "./services";
+import { SERVICES } from "./ts/services";
 
 interface ServiceDetailProps {
   id: String;

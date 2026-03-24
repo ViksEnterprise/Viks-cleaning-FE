@@ -1,16 +1,21 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-export default function DatePicker({ value, onChange }) {
+interface DatePickerProps {
+  value: string,
+  onChange: (date: string) => void;
+}
+
+const DatePicker: React.FC<DatePickerProps> = ({ value, onChange }) => {
   const today = new Date();
 
   const [showCalendar, setShowCalendar] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement | null>(null);
 
   const months = [
     "Jan",
@@ -30,14 +35,14 @@ export default function DatePicker({ value, onChange }) {
   // Sync prop value
   useEffect(() => {
     if (value) {
-      setSelectedDate(new Date(value));
+      setSelectedDate(value ? new Date(value) : null);
     }
   }, [value]);
 
   // Close when clicking outside
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (ref.current && !ref.current.contains(e.target)) {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
         setShowCalendar(false);
       }
     };
@@ -96,7 +101,7 @@ export default function DatePicker({ value, onChange }) {
     return days;
   };
 
-  const selectDate = (day) => {
+  const selectDate = (day: any) => {
     if (day.isDisabled || !day.date) return;
 
     setSelectedDate(day.date);
@@ -149,7 +154,7 @@ export default function DatePicker({ value, onChange }) {
               onClick={() => selectDate(day)}
               className={`p-2 text-center rounded text-sm cursor-pointer
                   ${day.isSelected ? "bg-[#00008B] text-white" : ""}
-                  ${day.isDisabled ? "text-gray-300 cursor-not-allowed" : "hover:bg-[#00008B]/50 hover:text-white text-gray-600"}
+                  ${day.isDisabled ? "text-gray-300 cursor-not-allowed" : "hover:bg-[#00008B]/80 hover:text-white text-gray-600"}
                 `}
             >
               {day.date && day.date.getDate()}
@@ -160,3 +165,5 @@ export default function DatePicker({ value, onChange }) {
     </div>
   );
 }
+
+export default DatePicker

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { VALUE } from "../component/values";
+import { VALUE } from "../component/ts/values";
 import { useEffect, useState } from "react";
 import Testimonial from "../component/Review";
 import { motion } from "motion/react";
