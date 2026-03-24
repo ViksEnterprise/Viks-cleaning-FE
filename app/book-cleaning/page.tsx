@@ -34,7 +34,7 @@ export default function BookService() {
           <span className="p-0 mt-0">Book our cleaning service</span>
         </div>
       </div>
-      <div className="flex p-5 items-center justify-center w-full">
+      <div className="flex p-5 items-center justify-center w-full gap-5">
         <div className="flex flex-col items-center justify-center bg-white shadow shadow-lg h-fit border border-gray-100 rounded-xl xl:w-2xl lg:w-xl md:w-lg sm:w-sm w-full">
           <div className={`w-full h-fit grid-cols-6 grid gap-4 p-3`}>
             {steps.map((i) => (
@@ -54,7 +54,7 @@ export default function BookService() {
             <span className="text-xl text-center text-black">
               {steps[currentStep - 1].title}
             </span>
-            {currentStep == 1 ? (
+            {currentStep == 3 ? (
               <div className="grid items-start space-y-5">
                 <div className="flex flex-col gap-1">
                   <label htmlFor="post_code">Post code</label>
@@ -101,7 +101,7 @@ export default function BookService() {
                   </select>
                 </div>
               </div>
-            ) : currentStep == 3 ? (
+            ) : currentStep == 1 ? (
               <div className="grid items-start space-y-5">
                 <div className="flex flex-col gap-1">
                   <label htmlFor="service_day">Preferred cleaning day</label>
@@ -172,19 +172,48 @@ export default function BookService() {
               <button
                 onClick={() => previouStep()}
                 type="button"
-                className="border border-[#00008B] text-[#00008B] rounded-lg h-12 md:w-2xs w-full font-normal"
+                disabled={currentStep == 1}
+                className="border border-[#00008B] text-[#00008B] rounded-lg h-12 md:w-2xs w-full font-normal cursor-pointer disabled:cursor-normal disabled:border-blue-200 disabled:text-blue-200"
               >
                 Back
               </button>
               <button
                 onClick={() => nextStep()}
                 type="button"
-                className="bg-[#00008B] text-white rounded-lg h-12 md:w-2xs w-full font-normal"
+                className="bg-[#00008B] text-white rounded-lg h-12 md:w-2xs w-full font-normal cursor-pointer"
               >
                 Next
               </button>
             </div>
           </form>
+        </div>
+        <div className="w-lg h-fit p-3 bg-white shadow shadow-lg border border-gray-100 rounded-xl w-sm grid items-start space-y-4">
+          <h2 className="text-xl uppercase font-bold text-[#00008B]">
+            Booking summary
+          </h2>
+          <div className="flex flex-col gap-2">
+            <span className="text-sm capitalize font-bold">
+              Post code: <span className="text-xs uppercase font-normal">jruru</span>
+            </span>
+            <span className="text-sm capitalize font-bold">
+              Address: <span className="text-xs font-normal">jruru</span>
+            </span>
+            <span className="text-sm capitalize font-bold">
+              Email: <span className="text-xs font-normal">jruru</span>
+            </span>
+            <span className="text-sm capitalize font-bold">
+              Cleaning type: <span className="text-xs font-normal">jruru</span>
+            </span>
+            <span className="text-sm capitalize font-bold">
+              Pet information: <span className="text-xs font-normal">jruru</span>
+            </span>
+            <span className="text-sm capitalize font-bold">
+              Cleaning frequency: <span className="text-xs font-normal">jruru</span>
+            </span>
+            <span className="text-sm capitalize font-bold">
+              Preferred cleaning day: <span className="text-xs font-normal">jruru</span>
+            </span>
+          </div>
         </div>
       </div>
       <Footer />
