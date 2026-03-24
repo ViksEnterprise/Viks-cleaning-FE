@@ -19,7 +19,7 @@ export function usePostcodeVerification() {
       setIsLoading(true);
       setError(null);
 
-      const res = await axios.get(`${API_URL}/${code}`, "");
+      const res = await axios.get(`${API_URL}/${code}`);
       const data = res.data;
 
       if (data.status === 200) {
