@@ -4,7 +4,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 interface DatePickerProps {
   value: string,
-  onChange: any
+  onChange: (date: string) => void;
 }
 
 const DatePicker: React.FC<DatePickerProps> = ({ value, onChange }) => {
