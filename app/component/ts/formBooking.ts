@@ -7,6 +7,35 @@ const CLEANING_TYPE = [
   "One-off and deep cleaning",
 ];
 
-const PETS = ["yes", "no"];
+const PETS = [
+  { label: "I have pets", key: "yes" },
+  { label: "I don't have pets", key: "no" },
+];
 
-export { CLEANING_TYPE, PETS };
+const SERVICE_FREQUENCY = ["weekly", "fornightly", "one-off"];
+
+const PREFERED_DAY = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Flexibility",
+];
+
+const PARKING = [
+  { label: "Parking is available", key: "Yes" },
+  { label: "Permit and meter parking", key: "Permit/meter parking" },
+  { label: "Parking is not available", key: "No" },
+];
+
+const IRONING = [
+  { label: "Ironing is neede as well", key: "yes" },
+  { label: "I do not want ironing", key: "no" },
+];
+
+const ACCESS = ["I will provide keys", "I will let the cleaner in"];
+
+// const SERVICE_FREQUENCY = ["weekly", "fornightly", "one-off"];
+
+export { CLEANING_TYPE, PETS, SERVICE_FREQUENCY, PREFERED_DAY, PARKING, IRONING, ACCESS };

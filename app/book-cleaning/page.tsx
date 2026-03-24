@@ -6,7 +6,15 @@ import Footer from "../component/Footer";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { FormData, FormErrors } from "../data/form";
 import { usePostcodeVerification } from "../composable/map&code_verification";
-import { CLEANING_TYPE, PETS } from "../component/ts/formBooking";
+import {
+  ACCESS,
+  CLEANING_TYPE,
+  IRONING,
+  PARKING,
+  PETS,
+  PREFERED_DAY,
+  SERVICE_FREQUENCY,
+} from "../component/ts/formBooking";
 
 export default function BookService() {
   const [formData, setFormData] = useState<FormData>({
@@ -85,7 +93,7 @@ export default function BookService() {
   };
 
   useEffect(() => {
-    if (currentStep >= 4) {
+    if (currentStep >= 4 || formData.hours) {
       setCount(2);
     } else {
       setCount(0);
@@ -185,13 +193,13 @@ export default function BookService() {
                         key={i}
                       >
                         <input
-                          value={val}
-                          checked={formData.pet === val}
+                          value={val.label}
+                          checked={formData.pet === val.label}
                           onChange={(e) => handleChange(e)}
                           type="radio"
                           name="pet"
                         />{" "}
-                        {val}
+                        {val.key}
                       </div>
                     ))}
                   </div>
@@ -204,10 +212,14 @@ export default function BookService() {
                     name="service_frequency"
                     value={formData.service_frequency}
                     onChange={(e) => handleChange(e)}
-                    className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
+                    className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal capitalize"
                   >
-                    <option value="">Choose</option>
-                    <option value="">Residential cleaning</option>
+                    <option value="choose">Choose</option>
+                    {SERVICE_FREQUENCY.map((val, i) => (
+                      <option key={i} value={val}>
+                        {val}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -221,44 +233,72 @@ export default function BookService() {
                     onChange={(e) => handleChange(e)}
                     className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
                   >
-                    <option value="">Choose</option>
-                    <option value="">Residential cleaning</option>
+                    <option value="choose">Choose</option>
+                    {PREFERED_DAY.map((val, i) => (
+                      <option key={i} value={val}>
+                        {val}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div className="flex flex-col gap-1">
                   <label htmlFor="parking">Is parking available?</label>
                   <div className="flex gap-5 items-center text-sm">
-                    <div className="flex gap-1 items-center text-black">
-                      <input type="radio" name="" /> Yes
-                    </div>
-                    <div className="flex gap-1 items-center text-black">
-                      <input type="radio" name="" /> Permit/meter parking
-                    </div>
-                    <div className="flex gap-1 items-center text-black">
-                      <input type="radio" name="" /> No
-                    </div>
+                    {PARKING.map((val, i) => (
+                      <div
+                        className="flex gap-1 items-center text-black"
+                        key={i}
+                      >
+                        <input
+                          value={val.label}
+                          checked={formData.parking === val.label}
+                          onChange={(e) => handleChange(e)}
+                          type="radio"
+                          name="parking"
+                        />{" "}
+                        {val.key}
+                      </div>
+                    ))}
                   </div>
                 </div>
                 <div className="flex flex-col gap-1">
                   <label htmlFor="iron">Do you need ironing?</label>
                   <div className="flex gap-5 items-center text-sm">
-                    <div className="flex gap-1 items-center text-black">
-                      <input type="radio" name="" /> Yes
-                    </div>
-                    <div className="flex gap-1 items-center text-black">
-                      <input type="radio" name="" /> No
-                    </div>
+                    {IRONING.map((val, i) => (
+                      <div
+                        className="flex gap-1 items-center text-black capitalize"
+                        key={i}
+                      >
+                        <input
+                          value={val.label}
+                          checked={formData.ironing === val.label}
+                          onChange={(e) => handleChange(e)}
+                          type="radio"
+                          name="ironing"
+                        />{" "}
+                        {val.key}
+                      </div>
+                    ))}
                   </div>
                 </div>
                 <div className="flex flex-col gap-1">
                   <label htmlFor="iron">How will the building be access?</label>
                   <div className="flex gap-5 items-center text-sm">
-                    <div className="flex gap-1 items-center text-black">
-                      <input type="radio" name="" /> I will provide keys
-                    </div>
-                    <div className="flex gap-1 items-center text-black">
-                      <input type="radio" name="" /> I will let the cleaner in
-                    </div>
+                    {ACCESS.map((val, i) => (
+                      <div
+                        className="flex gap-1 items-center text-black capitalize"
+                        key={i}
+                      >
+                        <input
+                          value={val}
+                          checked={formData.access === val}
+                          onChange={(e) => handleChange(e)}
+                          type="radio"
+                          name="access"
+                        />{" "}
+                        {val}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -269,9 +309,9 @@ export default function BookService() {
                   <div className="flex gap-2 items-center text-xs font-bold">
                     <button
                       type="button"
-                      disabled={count == 2}
+                      disabled={formData.hours <= 2}
                       onClick={() => decreaseHours()}
-                      className="p-1 bg-[#FF0000] text-white rounded-sm disabled:bg-blue-100 disabled:cursor-not-allowed cursor-pointer"
+                      className="p-1 bg-[#FF0000] text-white rounded-sm disabled:bg-[#FF0000]/40 disabled:cursor-not-allowed cursor-pointer"
                     >
                       <BiMinus size={13} />
                     </button>
@@ -361,7 +401,7 @@ export default function BookService() {
                   </span>
                 </span>
               )}
-              {result && (
+              {result && !error && (
                 <span className="text-sm capitalize font-bold">
                   Address:{" "}
                   <span className="text-xs font-normal">
@@ -370,7 +410,7 @@ export default function BookService() {
                 </span>
               )}
               {formData.email && (
-                <span className="text-sm capitalize font-bold">
+                <span className="text-sm font-bold">
                   Email:{" "}
                   <span className="text-xs font-normal normal-case">
                     {formData.email}
@@ -389,9 +429,7 @@ export default function BookService() {
                 <span className="text-sm font-bold">
                   Pet Information:{" "}
                   <span className="text-xs font-normal normal-case">
-                    {formData.pet == "yes"
-                      ? "I have pets"
-                      : "I don't have pets"}
+                    {formData.pet}
                   </span>
                 </span>
               )}
@@ -412,29 +450,23 @@ export default function BookService() {
                 </span>
               )}
               {formData.parking && (
-                <span className="text-sm capitalize font-bold">
+                <span className="text-sm font-bold">
                   Parking:{" "}
                   <span className="text-xs font-normal">
-                    {formData.parking == "yes"
-                      ? "Parking is available"
-                      : formData.parking == "no"
-                        ? "Parking is not available"
-                        : formData.parking}
+                    {formData.parking}
                   </span>
                 </span>
               )}
               {formData.ironing && (
-                <span className="text-sm capitalize font-bold">
+                <span className="text-sm font-bold">
                   Ironing:{" "}
                   <span className="text-xs font-normal">
-                    {formData.ironing == "yes"
-                      ? "Ironing is neede as well"
-                      : "I do not want ironing"}
+                    {formData.ironing}
                   </span>
                 </span>
               )}
               {formData.access && (
-                <span className="text-sm capitalize font-bold">
+                <span className="text-sm font-bold">
                   Access:{" "}
                   <span className="text-xs font-normal">{formData.access}</span>
                 </span>
@@ -444,6 +476,14 @@ export default function BookService() {
                   Hours:{" "}
                   <span className="text-xs font-normal">
                     {formData.hours} hours
+                  </span>
+                </span>
+              )}
+              {formData.date && (
+                <span className="text-sm font-bold">
+                  Schedule Date:{" "}
+                  <span className="text-xs font-normal">
+                    {formData.date} by {formData.time}
                   </span>
                 </span>
               )}
