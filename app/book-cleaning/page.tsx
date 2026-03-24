@@ -152,7 +152,7 @@ export default function BookService() {
                 <div className="grid items-start space-y-5">
                   <DatePicker
   value={formData.date}
-  onChange={(date: Date) =>
+  onChange={(date: string) =>
     setFormData((prev) => ({
       ...prev,
       date: date.toISOString(),
