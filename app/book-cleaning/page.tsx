@@ -14,7 +14,11 @@ import {
   PETS,
   PREFERED_DAY,
   SERVICE_FREQUENCY,
+  TITLE,
 } from "../component/ts/formBooking";
+import { postToAPI } from "../service/api";
+import { isValidPhoneNumber } from "react-phone-number-input";
+import PhoneInput from "react-phone-number-input/input";
 
 export default function BookService() {
   const [formData, setFormData] = useState<FormData>({
@@ -40,6 +44,10 @@ export default function BookService() {
   const [currentStep, setCurrentStep] = useState(1);
   const [count, setCount] = useState<number>(0);
   const [total, setTotal] = useState<number>(0);
+  const [modelDisplay, setModelDisplay] = useState<boolean>(false);
+  const [modelType, setModelType] = useState<string>("");
+  const [modelResponse, setModelResponse] = useState<string>("");
+  const [loading, setLoading] = useState(false);
   const price = 25;
 
   const { verifyPostcode, result, error, isLoading } =
@@ -51,6 +59,7 @@ export default function BookService() {
     { id: 3, title: "More Information" },
     { id: 4, title: "Cleaning hours" },
     { id: 5, title: "Calender and time" },
+    { id: 6, title: "Personal Information" },
   ];
 
   const handleChange = (e: any) => {
@@ -63,6 +72,41 @@ export default function BookService() {
       [name]: value,
     }));
   };
+
+  const handlePhoneChange = (value: any) => {
+    setFormData((prev) => ({
+      ...prev,
+      phone_number: value,
+    }));
+    setErrors((prev) => ({
+      ...prev,
+      phone_number: undefined,
+    }));
+  };
+
+  const stepFields: Record<number, (keyof FormData)[]> = {
+    1: ["postcode", "email"],
+    2: ["cleaning_type", "service_frequency", "pet"],
+    3: ["prefer_day", "parking", "ironing", "access"],
+    4: ["hours"],
+    5: ["date", "time"],
+    6: ["title", "full_name", "phone_number"],
+  };
+
+  const validateStep = (step: number) => {
+    const fields = stepFields[step] || [];
+
+    return fields.every((field) => {
+      const value = formData[field];
+
+      if (typeof value === "string") return value.trim() !== "";
+      if (typeof value === "number") return value > 0;
+
+      return value !== null && value !== undefined;
+    });
+  };
+
+  const isFormInvalid = !validateStep(currentStep) || !!error;
 
   const previouStep = () => {
     if (currentStep > 1) {
@@ -88,6 +132,50 @@ export default function BookService() {
     if (count < 30) {
       setCount((prev) => prev + 1);
     } else {
+      return;
+    }
+  };
+
+  const handleAddressSubmit = async (e: any) => {
+    e.preventDefault();
+    const err: FormErrors = {};
+    const alpha = /[a-z, A-Z]/g;
+    const symbol = /[!@#$%-+=_^&*()'><]/;
+    const number = /[0-9]/;
+
+    if (!formData.full_name) {
+      err.full_name = "Name field required";
+    } else if (
+      symbol.test(formData.full_name) ||
+      number.test(formData.full_name)
+    ) {
+      err.full_name = "No digit and symbols allowed";
+    } else if (!formData.phone_number) {
+      err.phone_number = "Field required";
+    } else if (
+      formData.phone_number &&
+      !isValidPhoneNumber(formData.phone_number)
+    ) {
+      err.phone_number = "Invalid phone number";
+    } else {
+      const url = "payments/payment-address";
+
+      setLoading(true);
+
+      try {
+        const response = await postToAPI(formData, url);
+        if (response) {
+        }
+      } catch (err) {
+        return;
+      } finally {
+        setLoading(false);
+      }
+      return;
+    }
+
+    if (Object.keys(err).length > 0) {
+      setErrors(err);
       return;
     }
   };
@@ -153,7 +241,9 @@ export default function BookService() {
                     name="postcode"
                     onChange={(e) => handleChange(e)}
                   />
-                  <span className="text-xs">{error}</span>
+                  <span className="text-xs text-[#FF0000!important]">
+                    {error}
+                  </span>
                 </div>
                 <div className="flex flex-col gap-1">
                   <label htmlFor="email">Email</label>
@@ -326,7 +416,7 @@ export default function BookService() {
                   </div>
                 </div>
               </div>
-            ) : (
+            ) : currentStep == 5 ? (
               <div className="grid items-start space-y-5">
                 <DatePicker
                   value={formData.date}
@@ -357,6 +447,51 @@ export default function BookService() {
                   ></textarea>
                 </div>
               </div>
+            ) : (
+              <div className="grid items-start space-y-5">
+                <div className="flex items-center gap-3 w-full">
+                  <div className="flex flex-col gap-1">
+                    <label htmlFor="title">Title</label>
+                    <select
+                      name="title"
+                      value={formData.title}
+                      onChange={(e) => handleChange(e)}
+                      className="h-12 p-2 w-24 rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
+                    >
+                      <option value="choose">Choose</option>
+                      {TITLE.map((val, i) => (
+                        <option key={i} value={val}>
+                          {val}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="flex flex-col gap-1 w-full">
+                    <label htmlFor="full name">Full Name</label>
+                    <input
+                      className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
+                      type="text"
+                      name="full_name"
+                      value={formData.full_name}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col gap-1 w-full">
+                  <label htmlFor="phone number">Phone number</label>
+                  <PhoneInput
+                    className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
+                    placeholder="Phone number"
+                    name="phone_number"
+                    value={formData.phone_number}
+                    onChange={handlePhoneChange}
+                    defaultCountry={`GB`}
+                  />
+                  <p className="text-xs font-semibold text-red-500 m-0">
+                    {errors.phone_number}
+                  </p>
+                </div>
+              </div>
             )}
             <div className="w-full flex md:flex-row flex-col gap-3 justify-between md:items-center items-start">
               <button
@@ -369,8 +504,9 @@ export default function BookService() {
               </button>
               <button
                 onClick={() => nextStep()}
+                disabled={isFormInvalid}
                 type="button"
-                className="bg-[#00008B] text-white rounded-lg h-12 md:w-2xs w-full font-normal cursor-pointer"
+                className="bg-[#00008B] text-white rounded-lg h-12 md:w-2xs w-full font-normal cursor-pointer disabled:bg-[#00008B]/50 disabled:cursor-not-allowed"
               >
                 Next
               </button>

@@ -36,6 +36,15 @@ const IRONING = [
 
 const ACCESS = ["I will provide keys", "I will let the cleaner in"];
 
-// const SERVICE_FREQUENCY = ["weekly", "fornightly", "one-off"];
+const TITLE = ["mr", "mrs", "miss."];
 
-export { CLEANING_TYPE, PETS, SERVICE_FREQUENCY, PREFERED_DAY, PARKING, IRONING, ACCESS };
+export {
+  CLEANING_TYPE,
+  PETS,
+  SERVICE_FREQUENCY,
+  PREFERED_DAY,
+  PARKING,
+  IRONING,
+  ACCESS,
+  TITLE,
+};
