@@ -84,17 +84,21 @@ export default function BookService() {
     }));
   };
 
-  const stepFields: Record<number, (keyof FormData)[]> = {
-    1: ["postcode", "email"],
+  const stepFields = (): Record<number, (keyof FormData)[]> => ({
+    1: ["postcode", "email", "address"],
     2: ["cleaning_type", "service_frequency", "pet"],
-    3: ["prefer_day", "parking", "ironing", "access"],
+    3:
+      formData.service_frequency !== "one-off"
+        ? ["prefer_day", "parking", "ironing", "access"]
+        : ["parking", "ironing", "access"],
     4: ["hours"],
     5: ["date", "time"],
     6: ["title", "full_name", "phone_number"],
-  };
+  });
 
   const validateStep = (step: number) => {
-    const fields = stepFields[step] || [];
+    const stepField = stepFields();
+    const fields = stepField[step] || [];
 
     return fields.every((field) => {
       const value = formData[field];
@@ -102,7 +106,7 @@ export default function BookService() {
       if (typeof value === "string") return value.trim() !== "";
       if (typeof value === "number") return value > 0;
 
-      return value !== null && value !== undefined;
+      return !!value;
     });
   };
 
@@ -139,7 +143,7 @@ export default function BookService() {
   const handleAddressSubmit = async (e: any) => {
     e.preventDefault();
     const err: FormErrors = {};
-    const alpha = /[a-z, A-Z]/g;
+    // const alpha = /[a-z, A-Z]/g;
     const symbol = /[!@#$%-+=_^&*()'><]/;
     const number = /[0-9]/;
 
@@ -158,7 +162,7 @@ export default function BookService() {
     ) {
       err.phone_number = "Invalid phone number";
     } else {
-      const url = "payments/payment-address";
+      const url = "booking";
 
       setLoading(true);
 
@@ -202,6 +206,13 @@ export default function BookService() {
 
     return () => clearTimeout(timeout);
   }, [formData.postcode]);
+
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      address: `${result.admin_district}, ${result.country}`,
+    }));
+  }, [result]);
 
   return (
     <div className="h-full bg-slate-100">
@@ -315,22 +326,24 @@ export default function BookService() {
               </div>
             ) : currentStep == 3 ? (
               <div className="grid items-start space-y-5">
-                <div className="flex flex-col gap-1">
-                  <label htmlFor="service_day">Preferred cleaning day</label>
-                  <select
-                    name="prefer_day"
-                    value={formData.prefer_day}
-                    onChange={(e) => handleChange(e)}
-                    className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
-                  >
-                    <option value="choose">Choose</option>
-                    {PREFERED_DAY.map((val, i) => (
-                      <option key={i} value={val}>
-                        {val}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                {formData.service_frequency !== "one-off" && (
+                  <div className="flex flex-col gap-1">
+                    <label htmlFor="service_day">Preferred cleaning day</label>
+                    <select
+                      name="prefer_day"
+                      value={formData.prefer_day}
+                      onChange={(e) => handleChange(e)}
+                      className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
+                    >
+                      <option value="choose">Choose</option>
+                      {PREFERED_DAY.map((val, i) => (
+                        <option key={i} value={val}>
+                          {val}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
                 <div className="flex flex-col gap-1">
                   <label htmlFor="parking">Is parking available?</label>
                   <div className="flex gap-5 items-center text-sm">
@@ -508,7 +521,13 @@ export default function BookService() {
                 type="button"
                 className="bg-[#00008B] text-white rounded-lg h-12 md:w-2xs w-full font-normal cursor-pointer disabled:bg-[#00008B]/50 disabled:cursor-not-allowed"
               >
-                Next
+                {loading ? (
+                  <div className="h-8 w-8 rounded-full border-r border-white border-b-transparent border-l border-t border-t-4 border-b-4 border-l-4 border-r-4 animate-spin"></div>
+                ) : (
+                  <span>
+                    {currentStep === steps.length ? "Submit" : "Next"}
+                  </span>
+                )}
               </button>
             </div>
           </form>
