@@ -36,7 +36,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ isOpen, close, id }) => {
         <p className="font-normal text-sm">{detail?.des}</p>
         <div className="w-full flex items-center justify-end">
           <a
-            href="/"
+            href="/book-cleaning"
             className="bg-[#0C06AC] text-sm h-11 flex items-center justify-center w-54 cursor-pointer rounded-lg text-white p-3 px-4 m-0"
           >
             Book now
