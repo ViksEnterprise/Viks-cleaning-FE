@@ -179,7 +179,10 @@ export default function BookService() {
       try {
         const response = await postToAPI(formData, url);
         if (response) {
-          console.log(response);
+          const data = response.data
+          localStorage.setItem('user_data', data.token)
+          localStorage.setItem("reference", data.sessions);
+          window.location.href = `${data.payment_url}`
         }
       } catch (err) {
         console.log(err);
@@ -544,9 +547,9 @@ export default function BookService() {
               </button>
               <button
                 onClick={() => nextStep()}
-                disabled={isFormInvalid}
+                disabled={isFormInvalid || loading}
                 type="button"
-                className="bg-[#00008B] text-white rounded-lg h-12 md:w-2xs w-full font-normal cursor-pointer disabled:bg-[#00008B]/50 disabled:cursor-not-allowed"
+                className="bg-[#00008B] text-white rounded-lg h-12 md:w-2xs w-full font-normal cursor-pointer disabled:bg-[#00008B]/50 disabled:cursor-not-allowed flex items-center justify-center"
               >
                 {loading ? (
                   <div className="h-8 w-8 rounded-full border-r border-white border-b-transparent border-l border-t border-t-4 border-b-4 border-l-4 border-r-4 animate-spin"></div>
