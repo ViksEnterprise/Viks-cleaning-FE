@@ -198,7 +198,7 @@ export default function BookService() {
 
   useEffect(() => {
     if (currentStep >= 4 || formData.hours) {
-      setCount(2);
+      setCount(formData.hours ? formData.hours : 2)
     } else {
       setCount(0);
     }
@@ -365,7 +365,7 @@ export default function BookService() {
                       name="prefer_day"
                       value={formData.prefer_day}
                       onChange={(e) => handleChange(e)}
-                      className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
+                      className="h-12 capitalize p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
                     >
                       <option value="choose">Choose</option>
                       {PREFERED_DAY.map((val, i) => (
@@ -496,7 +496,7 @@ export default function BookService() {
                       name="title"
                       value={formData.title}
                       onChange={(e) => handleChange(e)}
-                      className="h-12 p-2 w-24 rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
+                      className="h-12 capitalize p-2 w-24 rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
                     >
                       <option value="choose">Choose</option>
                       {TITLE.map((val, i) => (
