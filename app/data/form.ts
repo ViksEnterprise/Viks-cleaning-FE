@@ -13,8 +13,8 @@ export interface FormData {
   ironing: string;
   access: string;
   hours: number;
-  date: string;
-  time: string;
+  date_time: string;
+  price: number;
   notes?: string;
 }
 
@@ -33,8 +33,8 @@ export interface FormErrors {
   ironing?: string;
   access?: string;
   hours?: number;
-  date?: string;
-  time?: string;
+  date_time?: string;
+  price?: number;
   notes?: string;
 }
 

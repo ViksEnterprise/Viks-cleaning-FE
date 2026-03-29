@@ -21,6 +21,8 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 import PhoneInput from "react-phone-number-input/input";
 
 export default function BookService() {
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
   const [formData, setFormData] = useState<FormData>({
     postcode: "",
     title: "",
@@ -36,8 +38,8 @@ export default function BookService() {
     ironing: "",
     access: "",
     hours: 0,
-    date: "",
-    time: "",
+    date_time: "",
+    price: 0,
     notes: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
@@ -73,6 +75,10 @@ export default function BookService() {
     }));
   };
 
+  const handleTimeChange = (e: any) => {
+    setTime(e.target.value);
+  };
+
   const handlePhoneChange = (value: any) => {
     setFormData((prev) => ({
       ...prev,
@@ -92,7 +98,7 @@ export default function BookService() {
         ? ["prefer_day", "parking", "ironing", "access"]
         : ["parking", "ironing", "access"],
     4: ["hours"],
-    5: ["date", "time"],
+    5: ["date_time"],
     6: ["title", "full_name", "phone_number"],
   });
 
@@ -118,9 +124,13 @@ export default function BookService() {
     }
   };
 
-  const nextStep = () => {
+  const nextStep = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+
     if (currentStep < steps.length) {
       setCurrentStep((prev) => prev + 1);
+    } else {
+      handleAddressSubmit(e);
     }
   };
 
@@ -140,8 +150,8 @@ export default function BookService() {
     }
   };
 
-  const handleAddressSubmit = async (e: any) => {
-    e.preventDefault();
+  const handleAddressSubmit = async (e?: any) => {
+    if (e) e.preventDefault();
     const err: FormErrors = {};
     // const alpha = /[a-z, A-Z]/g;
     const symbol = /[!@#$%-+=_^&*()'><]/;
@@ -169,8 +179,10 @@ export default function BookService() {
       try {
         const response = await postToAPI(formData, url);
         if (response) {
+          console.log(response);
         }
       } catch (err) {
+        console.log(err);
         return;
       } finally {
         setLoading(false);
@@ -194,7 +206,11 @@ export default function BookService() {
 
   useEffect(() => {
     setTotal(price * count);
-    formData.hours = count;
+    setFormData((prev) => ({
+      ...prev,
+      hours: count,
+      price: price * count,
+    }));
   }, [count]);
 
   useEffect(() => {
@@ -213,6 +229,22 @@ export default function BookService() {
       address: `${result.admin_district}, ${result.country}`,
     }));
   }, [result]);
+
+  useEffect(() => {
+    if (!date || !time) return;
+
+    const dateTimeString = `${date}T${time}`;
+    const parsedDate = new Date(dateTimeString);
+
+    if (isNaN(parsedDate.getTime())) return;
+
+    const newDate = parsedDate.toISOString();
+
+    setFormData((prev) => ({
+      ...prev,
+      date_time: newDate,
+    }));
+  }, [date, time]);
 
   return (
     <div className="h-full bg-slate-100">
@@ -237,7 +269,7 @@ export default function BookService() {
               ></div>
             ))}
           </div>
-          <form className="w-full h-full p-3 text-[#6E7191] font-semibold flex flex-col gap-5">
+          <form className="w-full h-full p-3 text-[#6E7191] font-semibold flex flex-col gap-5" onSubmit={nextStep}>
             <span className="text-xl text-center text-black">
               {steps[currentStep - 1].title}
             </span>
@@ -313,11 +345,11 @@ export default function BookService() {
                     name="service_frequency"
                     value={formData.service_frequency}
                     onChange={(e) => handleChange(e)}
-                    className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal capitalize"
+                    className="h-12 p-2 w-full capitalize rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal capitalize"
                   >
                     <option value="choose">Choose</option>
                     {SERVICE_FREQUENCY.map((val, i) => (
-                      <option key={i} value={val}>
+                      <option className="capitalize" key={i} value={val}>
                         {val}
                       </option>
                     ))}
@@ -432,13 +464,8 @@ export default function BookService() {
             ) : currentStep == 5 ? (
               <div className="grid items-start space-y-5">
                 <DatePicker
-                  value={formData.date}
-                  onChange={(date: string) =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      date,
-                    }))
-                  }
+                  value={date}
+                  onChange={(date: string) => setDate(date)}
                 />
                 <div className="flex flex-col gap-1 px-4">
                   <label htmlFor="service">Select Time</label>
@@ -446,8 +473,8 @@ export default function BookService() {
                     className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
                     type="time"
                     name="time"
-                    value={formData.time}
-                    onChange={(e) => handleChange(e)}
+                    value={time}
+                    onChange={handleTimeChange}
                   />
                 </div>
                 <div className="flex flex-col gap-1 px-4">
@@ -634,11 +661,11 @@ export default function BookService() {
                   </span>
                 </span>
               )}
-              {formData.date && (
+              {formData.date_time && (
                 <span className="text-sm font-bold">
                   Schedule Date:{" "}
                   <span className="text-xs font-normal">
-                    {formData.date} by {formData.time}
+                    {date} by {time}
                   </span>
                 </span>
               )}

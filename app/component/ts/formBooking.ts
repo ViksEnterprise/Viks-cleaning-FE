@@ -15,12 +15,12 @@ const PETS = [
 const SERVICE_FREQUENCY = ["weekly", "fornightly", "one-off"];
 
 const PREFERED_DAY = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Flexibility",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "flexible",
 ];
 
 const PARKING = [
