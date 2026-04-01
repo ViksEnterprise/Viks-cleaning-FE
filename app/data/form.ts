@@ -5,10 +5,10 @@ export interface FormData {
   phone_number: string;
   title: string;
   address: string;
+  location: string;
+  city: string;
   pet: string;
   cleaning_type: string;
-  service_frequency: string;
-  prefer_day: string;
   parking: string;
   ironing: string;
   access: string;
@@ -25,10 +25,10 @@ export interface FormErrors {
   phone_number?: string;
   title?: string;
   address?: string;
+  location?: string;
+  city?: string;
   pet?: string;
   cleaning_type?: string;
-  service_frequency?: string;
-  prefer_day?: string;
   parking?: string;
   ironing?: string;
   access?: string;

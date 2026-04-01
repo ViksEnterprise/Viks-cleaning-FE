@@ -12,8 +12,6 @@ import {
   IRONING,
   PARKING,
   PETS,
-  PREFERED_DAY,
-  SERVICE_FREQUENCY,
   TITLE,
 } from "../component/ts/formBooking";
 import { postToAPI } from "../service/api";
@@ -30,10 +28,10 @@ export default function BookService() {
     email: "",
     phone_number: "",
     address: "",
+    location: "",
+    city: "",
     cleaning_type: "",
     pet: "",
-    service_frequency: "",
-    prefer_day: "",
     parking: "",
     ironing: "",
     access: "",
@@ -46,9 +44,6 @@ export default function BookService() {
   const [currentStep, setCurrentStep] = useState(1);
   const [count, setCount] = useState<number>(0);
   const [total, setTotal] = useState<number>(0);
-  const [modelDisplay, setModelDisplay] = useState<boolean>(false);
-  const [modelType, setModelType] = useState<string>("");
-  const [modelResponse, setModelResponse] = useState<string>("");
   const [loading, setLoading] = useState(false);
   const price = 25;
 
@@ -91,15 +86,12 @@ export default function BookService() {
   };
 
   const stepFields = (): Record<number, (keyof FormData)[]> => ({
-    1: ["postcode", "email", "address"],
-    2: ["cleaning_type", "service_frequency", "pet"],
-    3:
-      formData.service_frequency !== "one-off"
-        ? ["prefer_day", "parking", "ironing", "access"]
-        : ["parking", "ironing", "access"],
+    1: ["postcode", "email", "location", "city"],
+    2: ["cleaning_type", "pet"],
+    3: ["parking", "ironing", "access"],
     4: ["hours"],
     5: ["date_time"],
-    6: ["title", "full_name", "phone_number"],
+    6: ["title", "full_name", "address", "phone_number"],
   });
 
   const validateStep = (step: number) => {
@@ -229,7 +221,8 @@ export default function BookService() {
   useEffect(() => {
     setFormData((prev) => ({
       ...prev,
-      address: `${result.admin_district}, ${result.country}`,
+      location: result.admin_district,
+      city: result.country
     }));
   }, [result]);
 
@@ -272,7 +265,10 @@ export default function BookService() {
               ></div>
             ))}
           </div>
-          <form className="w-full h-full p-3 text-[#6E7191] font-semibold flex flex-col gap-5" onSubmit={nextStep}>
+          <form
+            className="w-full h-full p-3 text-[#6E7191] font-semibold flex flex-col gap-5"
+            onSubmit={nextStep}
+          >
             <span className="text-xl text-center text-black">
               {steps[currentStep - 1].title}
             </span>
@@ -340,45 +336,9 @@ export default function BookService() {
                     ))}
                   </div>
                 </div>
-                <div className="flex flex-col gap-1">
-                  <label htmlFor="service">
-                    How often do you need our service?
-                  </label>
-                  <select
-                    name="service_frequency"
-                    value={formData.service_frequency}
-                    onChange={(e) => handleChange(e)}
-                    className="h-12 p-2 w-full capitalize rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal capitalize"
-                  >
-                    <option value="choose">Choose</option>
-                    {SERVICE_FREQUENCY.map((val, i) => (
-                      <option className="capitalize" key={i} value={val}>
-                        {val}
-                      </option>
-                    ))}
-                  </select>
-                </div>
               </div>
             ) : currentStep == 3 ? (
               <div className="grid items-start space-y-5">
-                {formData.service_frequency !== "one-off" && (
-                  <div className="flex flex-col gap-1">
-                    <label htmlFor="service_day">Preferred cleaning day</label>
-                    <select
-                      name="prefer_day"
-                      value={formData.prefer_day}
-                      onChange={(e) => handleChange(e)}
-                      className="h-12 capitalize p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
-                    >
-                      <option value="choose">Choose</option>
-                      {PREFERED_DAY.map((val, i) => (
-                        <option key={i} value={val}>
-                          {val}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                )}
                 <div className="flex flex-col gap-1">
                   <label htmlFor="parking">Is parking available?</label>
                   <div className="flex gap-5 items-center text-sm">
@@ -521,6 +481,16 @@ export default function BookService() {
                   </div>
                 </div>
                 <div className="flex flex-col gap-1 w-full">
+                  <label htmlFor="address">Address</label>
+                  <input
+                    className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
+                    type="text"
+                    name="address"
+                    value={formData.address}
+                    onChange={(e) => handleChange(e)}
+                  />
+                </div>
+                <div className="flex flex-col gap-1 w-full">
                   <label htmlFor="phone number">Phone number</label>
                   <PhoneInput
                     className="h-12 p-2 w-full rounded-lg border border-[#0000000F] bg-[#F0F2F5] outline-transparent text-black font-normal"
@@ -588,7 +558,7 @@ export default function BookService() {
               )}
               {result && !error && (
                 <span className="text-sm capitalize font-bold">
-                  Address:{" "}
+                  Location and city:{" "}
                   <span className="text-xs font-normal">
                     {result.admin_district}, {result.country}
                   </span>
@@ -615,22 +585,6 @@ export default function BookService() {
                   Pet Information:{" "}
                   <span className="text-xs font-normal normal-case">
                     {formData.pet}
-                  </span>
-                </span>
-              )}
-              {formData.service_frequency && (
-                <span className="text-sm capitalize font-bold">
-                  Cleaning frequency:{" "}
-                  <span className="text-xs font-normal">
-                    {formData.service_frequency}
-                  </span>
-                </span>
-              )}
-              {formData.prefer_day && (
-                <span className="text-sm capitalize font-bold">
-                  Preferred cleaning day:{" "}
-                  <span className="text-xs font-normal">
-                    {formData.prefer_day}
                   </span>
                 </span>
               )}

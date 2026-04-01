@@ -12,16 +12,16 @@ const PETS = [
   { label: "I don't have pets", key: "no" },
 ];
 
-const SERVICE_FREQUENCY = ["weekly", "fornightly", "one-off"];
+// const SERVICE_FREQUENCY = ["weekly", "fornightly", "one-off"];
 
-const PREFERED_DAY = [
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "flexible",
-];
+// const PREFERED_DAY = [
+//   "monday",
+//   "tuesday",
+//   "wednesday",
+//   "thursday",
+//   "friday",
+//   "flexible",
+// ];
 
 const PARKING = [
   { label: "Parking is available", key: "Yes" },
@@ -41,8 +41,6 @@ const TITLE = ["mr", "mrs", "miss."];
 export {
   CLEANING_TYPE,
   PETS,
-  SERVICE_FREQUENCY,
-  PREFERED_DAY,
   PARKING,
   IRONING,
   ACCESS,

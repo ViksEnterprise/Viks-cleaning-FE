@@ -49,7 +49,7 @@ export default function Testimonial() {
                 key={i}
               >
                 <div
-                  className="flex flex-col gap-3 w-full py-3 px-2 rounded-[8px] md:h-67 h-75 shadow-lg border border-[#00000040] bg-white items-center"
+                  className="flex flex-col gap-3 w-full py-3 px-2 rounded-[8px] md:h-44 h-50 shadow-lg border border-[#00000040] bg-white items-center"
                   key={i}
                 >
                   {/* <Image

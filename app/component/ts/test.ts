@@ -1,35 +1,52 @@
 const TESTIMONIAL = [
   {
     image: "/image/sample.jpg",
-    name: "— Joyce Chijoke",
+    name: "— Adams",
     review:
-      "I didn't know that it will be possible for me to create fliers and get paid for it. I didn't even think of it as something I could achieve. But thanks to Creasite Nextgen Academy I was able to achieve it and I'm making significant progress in which people are confirming it as well. Thank you for coming into my life CNA. I'm happy and proud to say that the time you invested in me isn't in vain. Thank you so much, Coach.",
+      "As a busy working professional, I barely have time to clean. Their service has been a lifesaver-my home is always spotless.",
   },
   {
     image: "/image/sample.jpg",
     name: "— Dedoni faith",
     review:
-      "Because of your training from Coach through CNA, I was able to get a gig from my church today to design a flier for them and also be their graphics designer. Thank you so much CNA",
+      "With three kids at home, things get messy fast. They came in and handled everything so well, I was honestly impressed.",
   },
   {
     image: "/image/sample.jpg",
     name: "— Peaceabella Kenechukwu",
     review:
-      "I want to say thank you to CNA(Creasite Nextgen Academy) for what I have become.",
+      "I run a small business, and keeping the office clean used to be stressful. Now I don't even have to think about it.",
   },
   {
     image: "/image/sample.jpg",
     name: "— Emakpor Christiana",
     review:
-      "Yesterday's class was interesting. I love how each points were carefully highlighted. The designs brief and principles were thoroughly explained in details. Yesterday class helped me in figuring out the mistakes I used to do. Thank you ma. Thank you Creatsite Nextgen Academy.",
+      "As a student, I needed something affordable but reliable, and they delivered beyond my expectations.",
   },
   {
     image: "/image/sample.jpg",
     name: "— Abdullah Bello",
     review:
-      "Firstly, I must say THANK GOD for bringing you into my life. Sometimes people think that success only comes from meeting and connecting with wealthy individuals. They forget that associating with disciplined, experienced, and well-mannered people is even more valuable. Learning from such people truly reserves a seat for you at the top. No amount of words can fully explain how God has used you to transform me. All I can say is thank you. May the blessings of God continue to shower upon you.",
+      "I’m very particular about cleanliness, and they met my standards perfectly. Attention to detail is top-notch.",
   },
-  
+  {
+    image: "/image/sample.jpg",
+    name: "— Abdullah Bello",
+    review:
+      "After my house renovation, the place was a disaster. They transformed it completely—it felt brand new again.",
+  },
+  {
+    image: "/image/sample.jpg",
+    name: "— Abdullah Bello",
+    review:
+      "I travel a lot, so I needed a service I could trust. They’ve been consistent, professional, and dependable every time.",
+  },
+  {
+    image: "/image/sample.jpg",
+    name: "— Abdullah Bello",
+    review:
+      "As an elderly homeowner, I appreciate how respectful and patient they are. They do an excellent job and make things easy for me.",
+  },
 ];
 
-export {TESTIMONIAL}
+export { TESTIMONIAL };

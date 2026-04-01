@@ -46,7 +46,10 @@ export default function Footer() {
                   <a href="/services">Services</a>
                 </li>
                 <li className="font-[200] text-[0.90em]">
-                  <a href="/#terms-and-privacy">Terms & Privacy</a>
+                  <a href="/#terms-and-condition">Terms & Condition</a>
+                </li>
+                <li className="font-[200] text-[0.90em]">
+                  <a href="/#terms-and-condition">Privacy Policy</a>
                 </li>
                 <li className="font-[200] text-[0.90em]">
                   <a href="/contact">Contact</a>
