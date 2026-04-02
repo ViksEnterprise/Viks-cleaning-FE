@@ -7,10 +7,12 @@ import { postToAPI } from "../service/api";
 export default function PaymentVerification() {
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const ref = localStorage.getItem("reference");
     const tok = localStorage.getItem("user_data");
+    setMounted(true);
 
     if (!ref || !tok) {
       window.location.href = "/";
@@ -46,7 +48,11 @@ export default function PaymentVerification() {
 
     handleVerify();
   }, []);
-
+  
+ if (!mounted) {
+    return;
+  }
+  
   return (
     <div className="mt-7 py-3 h-[90svh] w-full flex items-center justify-center">
       {loading && !response ? (
