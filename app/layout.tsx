@@ -21,6 +21,16 @@ export const metadata: Metadata = {
   description: "Viks cleaning gives you spotless results, every time.",
 };
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QW403VZPT6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QW403VZPT6');
+</script>
+
 export default function RootLayout({
   children,
 }: Readonly<{
