@@ -56,19 +56,32 @@ const Services: React.FC<SERVICEPROPS> = ({ home }) => {
                 hidden: { scale: 0, opacity: 0 },
                 visible: { scale: 1, opacity: 1 },
               }}
-              className="flex relative overflow-hidden before:absolute before:w-full before:h-full before:bg-black/20 rounded-lg cursor-pointer"
-              onClick={() => openDetail(val.title)}
               key={i}
+              className="perspective overflow-hidden h-fit w-fit rounded-lg cursor-pointer"
             >
-              <Image
-                src={val.img}
-                className="h-82 rounded-lg border-gray-200 border"
-                alt=""
-                height={500}
-                width={500}
-              />
-              <div className="h-12 flex items-center absolute end-0 w-fit p-3 bg-[#00008B] top-4 text-white capitalize">
-                {val.title}
+              <div className="relative h-82 block w-full duration-500 transform-style preserve-3d hover:rotate-y-180">
+                <div className="backface-hidden h-fit w-full flex">
+                  <Image
+                    src={val.img}
+                    className="h-82 rounded-lg border-gray-200 border"
+                    alt=""
+                    height={500}
+                    width={500}
+                  />
+                  <div className="h-12 flex items-center absolute end-0 w-fit p-3 bg-[#00008B] top-4 text-white capitalize">
+                    {val.title}
+                  </div>
+                </div>
+                <div className="absolute top-0 rotate-y-180 backface-hidden h-82 w-full bg-[#00008B]/55 flex flex-col gap-4 text-white items-center justify-center">
+                  <span className="text-3xl capitalize">{val.title}</span>
+                  <button
+                    type="button"
+                    onClick={() => openDetail(val.title)}
+                    className="w-64 h-11 rounded-lg text-center justify-center flex items-center bg-[#00008B] cursor-pointer"
+                  >
+                    Learn More
+                  </button>
+                </div>
               </div>
             </motion.div>
           ))}
@@ -84,18 +97,31 @@ const Services: React.FC<SERVICEPROPS> = ({ home }) => {
                 hidden: { y: 70, opacity: 0 },
                 visible: { y: 0, opacity: 1 },
               }}
-              onClick={() => openDetail(val.title)}
-              className="shadow-[#00000040] h-92 shadow border-[#BDBDBD] border p-5 rounded-lg flex items-start justify-between flex-col gap-5 cursor-pointer"
+              className="perspective shadow-[#00000040] h-92 rounded-lg overflow-hidden"
               key={i}
             >
-              <span className="text-2xl">{val.title}</span>
-              <Image
-                className="h-56 w-full rounded-lg"
-                src={val.img}
-                alt=""
-                width={500}
-                height={400}
-              />
+              <div className="relative h-full block w-full duration-500 transform-style preserve-3d hover:rotate-y-180">
+                <div className="backface-hidden h-full w-full shadow border-[#BDBDBD] border p-5 flex items-start justify-between flex-col gap-5 cursor-pointer">
+                  <span className="text-2xl">{val.title}</span>
+                  <Image
+                    className="h-56 w-full rounded-lg"
+                    src={val.img}
+                    alt=""
+                    width={500}
+                    height={400}
+                  />
+                </div>
+                <div className="absolute top-0 rotate-y-180 backface-hidden h-[inherit] w-full bg-[#00008B]/55 flex flex-col gap-4 text-white items-center justify-center">
+                  <span className="text-3xl capitalize">{val.title}</span>
+                  <button
+                    type="button"
+                    onClick={() => openDetail(val.title)}
+                    className="w-64 h-11 rounded-lg text-center justify-center flex items-center bg-[#00008B] cursor-pointer"
+                  >
+                    Learn More
+                  </button>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -110,18 +136,31 @@ const Services: React.FC<SERVICEPROPS> = ({ home }) => {
                 hidden: { y: 70, opacity: 0 },
                 visible: { y: 0, opacity: 1 },
               }}
-              onClick={() => openDetail(val.title)}
-              className="shadow-[#00000040] h-86 shadow border-[#BDBDBD] border p-5 rounded-lg flex items-start justify-between flex-col gap-5 cursor-pointer"
+              className="perspective cursor-pointer h-86 rounded-lg overflow-hidden"
               key={i}
             >
-              <span className="text-xl">{val.title}</span>
-              <Image
-                className="h-56 w-full rounded-lg"
-                src={val.img}
-                alt=""
-                width={500}
-                height={400}
-              />
+              <div className="relative h-full block w-full duration-500 transform-style preserve-3d hover:rotate-y-180">
+                <div className="backface-hidden h-full w-full shadow-[#00000040] shadow border-[#BDBDBD] border p-5 flex items-start justify-between flex-col gap-5">
+                  <span className="text-xl">{val.title}</span>
+                  <Image
+                    className="h-56 w-full rounded-lg"
+                    src={val.img}
+                    alt=""
+                    width={500}
+                    height={400}
+                  />
+                </div>
+                <div className="absolute top-0 rotate-y-180 backface-hidden h-full w-full bg-[#00008B]/55 flex flex-col gap-4 text-white items-center justify-center">
+                  <span className="text-3xl capitalize">{val.title}</span>
+                  <button
+                    type="button"
+                    onClick={() => openDetail(val.title)}
+                    className="w-64 h-11 rounded-lg text-center justify-center flex items-center bg-[#00008B] cursor-pointer"
+                  >
+                    Learn More
+                  </button>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
