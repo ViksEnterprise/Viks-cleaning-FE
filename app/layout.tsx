@@ -29,8 +29,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={helvetica.className}>
-        
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-QW403VZPT6"
