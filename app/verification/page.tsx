@@ -7,10 +7,12 @@ import { postToAPI } from "../service/api";
 export default function PaymentVerification() {
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const ref = localStorage.getItem("reference");
     const tok = localStorage.getItem("user_data");
+    setMounted(true);
 
     if (!ref || !tok) {
       window.location.href = "/";
@@ -47,13 +49,18 @@ export default function PaymentVerification() {
     handleVerify();
   }, []);
 
+  if (!mounted) {
+    return;
+  }
+
   return (
     <div className="mt-7 py-3 h-[90svh] w-full flex items-center justify-center">
       {loading && !response ? (
         <div className="flex flex-col gap-3 items-center text-center justify-center">
           <span className="h-25 w-25 rounded-full border-purple-800 border-l border-t border-e border-b-transparent border-[5px] animate-spin"></span>
           <span className="text-gray-600 font-medium text-lg">
-            Please do not close or leave this page while we verify your registration
+            Please do not close or leave this page while we verify your
+            registration
           </span>
         </div>
       ) : (
